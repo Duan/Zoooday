@@ -1,0 +1,101 @@
+<?php
+// $Id: matrix.install,v 1.2.4.2 2009/02/06 01:31:16 aaron1234nz Exp $
+
+/**
+ * Implementation of hook_install().
+ */
+function matrix_install() {
+  drupal_load('module', 'content');
+  content_notify('uninstall', 'matrix');
+  drupal_install_schema('matrix'); 
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function matrix_uninstall() {
+  drupal_load('module', 'content');
+  content_notify('uninstall', 'matrix');
+  drupal_uninstall_schema('matrix'); 
+}
+
+/**
+ * Implementation of hook_enable().
+ */
+function matrix_enable() {
+  drupal_load('module', 'content');
+  content_notify('enable', 'matrix');
+}
+
+/**
+ * Implementation of hook_disable().
+ */
+function matrix_disable() {
+  drupal_load('module', 'content');
+  content_notify('disable', 'matrix');
+}
+
+/**
+ * Implementation of hook_schema().
+ */
+function matrix_schema() {
+  $schema['node_field_matrix_data'] = array(
+    'description' => t('The base table for matrix data.'),
+    'fields' => array(
+      'nid' => array(
+        'description' => t('The primary identifier for a node.'),
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'vid' => array(
+        'description' => t('The current {node_revisions}.vid version identifier.'),
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'field_name' => array(
+        'description' => t('The chart type for this node.'),
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => ''),
+      'row' => array(
+        'description' => t('Number of rows?'),
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'col' => array(
+        'description' => t('Number of columns?'),
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'value' => array(
+        'description' => t('Number of rows?'),
+        'type' => 'text',
+        'not null' => TRUE,
+        'default' => ''),
+      ),
+  );
+  return $schema;
+}
+
+function matrix_update613() {
+  $result = db_query("SELECT field_name, global_settings FROM {node_field} WHERE type = 'matrix'");
+  while ($row = db_fetch_object($result)) {
+    $old = unserialize($row->global_settings);
+    foreach ($old as $item => $value) {
+      $a = explode('_', $item);
+      if ($a[0] == 'label' && $a[1] == 'row' && !empty($value)) {
+        $rows[] = $value;
+      }
+      if ($a[0] == 'label' && $a[1] == 'column' && !empty($value)) {
+        $column[] = $value;
+      }
+    }
+    $new = array('rows' => implode("\n", $rows), 'cols' => implode("\n", $column), 'size' => '15');
+    db_query("UPDATE {node_field} SET global_settings = '%s' WHERE field_name = '%s'", serialize($new), $row->field_name);
+  }
+}
