@@ -1,0 +1,13 @@
+name = Date single day
+description = Change CCK date popup form elements to show only the date on the 'To' field.
+dependencies[] = date
+dependencies[] = date_popup
+package = Date/Time
+core = 6.x
+
+; Information added by drupal.org packaging script on 2011-04-15
+version = "6.x-1.4"
+core = "6.x"
+project = "date_single_day"
+datestamp = "1302859315"
+

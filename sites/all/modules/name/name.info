@@ -1,0 +1,14 @@
+; $Id: name.info,v 1.2 2010/01/27 04:12:21 aland Exp $
+name = Name
+description = Defines a persons name field type.
+dependencies[] = content
+package = CCK
+version = VERSION
+core = 6.x
+
+; Information added by drupal.org packaging script on 2010-10-02
+version = "6.x-1.4"
+core = "6.x"
+project = "name"
+datestamp = "1286056867"
+

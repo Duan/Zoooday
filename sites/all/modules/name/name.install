@@ -1,0 +1,149 @@
+<?php
+// $Id: name.install,v 1.1.2.2 2010/09/26 06:43:45 aland Exp $
+
+/**
+ * @file
+ * Standard installation functions for name.
+ */
+
+/**
+ * Implementation of hook_schema().
+ */
+function name_schema() {
+  $schema = array();
+  $schema['name_custom_format'] = array(
+    'fields' => array(
+      'ncfid' => array(
+        'description' => t('The primary identifier for a custom format.'),
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'name' => array(
+        'description' => t('The name to identify the custom format to a user.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE),
+      'machine_name' => array(
+        'description' => t('The machine name to identify the custom format to the system.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE),
+      'format' => array(
+        'description' => t('The format string to apply to names.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE),
+    ),
+    'primary key' => array('ncfid'),
+  );
+  return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function name_install() {
+  drupal_install_schema('name');
+  drupal_load('module', 'content');
+  content_notify('install', 'name');
+
+  // Inserts some common name formats.
+  // These all map to eariler hard-coded options.
+  name_install_default_formats();
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function name_uninstall() {
+  drupal_load('module', 'content');
+  content_notify('uninstall', 'name');
+  variable_del('name_settings');
+  drupal_uninstall_schema('name');
+}
+
+/**
+ * Implementation of hook_enable().
+ */
+function name_enable() {
+  drupal_load('module', 'content');
+  content_notify('enable', 'name');
+}
+
+/**
+ * Implementation of hook_disable().
+ */
+function name_disable() {
+  drupal_load('module', 'content');
+  content_notify('disable', 'name');
+}
+
+/**
+ * This adds the formats that would otherwise be
+ * inserted during installation.
+ */
+function name_update_6000() {
+  $ret = array();
+
+  // Create the table.
+  $schema = array(
+    'fields' => array(
+      'ncfid' => array(
+        'description' => t('The primary identifier for a custom format.'),
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'name' => array(
+        'description' => t('The name to identify the custom format to a user.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE),
+      'machine_name' => array(
+        'description' => t('The machine name to identify the custom format to the system.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE),
+      'format' => array(
+        'description' => t('The format string to apply to names.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE),
+    ),
+    'primary key' => array('ncfid'),
+  );
+  db_create_table($ret, 'name_custom_format', $schema);
+
+  // Install some default values.
+  $t = get_t();
+  name_install_default_formats();
+  $ret[] = array('success' => TRUE, 'query' => $t('Created some custom name format strings. These are listed !here.', array('!here' => l($t('here', 'admin/settings/name')))));
+
+  // Clear the caches.
+  cache_clear_all('*', 'cache', TRUE);
+  cache_clear_all('*', 'cache_content', TRUE);
+  if (module_exists('views')) {
+    // Needed because this can be called from .install files
+    module_load_include('module', 'views');
+    views_invalidate_cache();
+  }
+
+  return $ret;
+}
+
+/**
+ * Inserts some common formats.
+ */
+function name_install_default_formats() {
+  $t = get_t();
+  $formats = array(
+    array('format' => 't+ig+im+if+is+ic', 'name' => $t('Full'), 'machine_name' => 'full'),
+    array('format' => 'g', 'name' => $t('Given'), 'machine_name' => 'given'),
+    array('format' => 'f', 'name' => $t('Family'), 'machine_name' => 'family'),
+    array('format' => 't+if', 'name' => $t('Title Family'), 'machine_name' => 'formal'),
+    array('format' => 'g+if', 'name' => $t('Given Family'), 'machine_name' => 'short_full'),
+  );
+
+  foreach ($formats as $format) {
+    db_query("INSERT INTO {name_custom_format} (name, machine_name, format) VALUES ('%s', '%s', '%s')", $format['name'], $format['machine_name'], $format['format']);
+  }
+}
