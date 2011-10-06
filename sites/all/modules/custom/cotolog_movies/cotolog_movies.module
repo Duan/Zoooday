@@ -20,8 +20,58 @@ function cotolog_movies_menu(){
     'page arguments' => array('cotolog_movies_form'),
     'access arguments' => array('create cololog movies'),
     );
+  $items['admin/mamagerca/cotologmusics'] = array(
+    'title' => 'Đăng ký Thể loại ca nhạc',
+    'description' => 'Đăng ký Thể loại ca nhạc',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cotolog_musics_form'),
+    'access arguments' => array('create cololog movies'),
+    );
+   $items['admin/mamagerca/cotologkichs'] = array(
+    'title' => 'Đăng ký rạp diễn kịch',
+    'description' => 'Đăng ký rạp diễn kịch nói',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cotolog_kichs_form'),
+    'access arguments' => array('create cololog movies'),
+    );
     
   return $items;
+}
+
+function cotolog_kichs_form(){
+	$form['name'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Tên thể loại ca nhạc'), 
+    );
+    $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('submit')
+    );
+    return $form;
+}
+
+function cotolog_kichs_form_submit($form,&$form_sate){
+	$term = array( 'vid' => 4, 'name' => $form_sate['values']['name'], 'parent' => 0 );
+	taxonomy_save_term($term);
+	drupal_set_message('Đã lưu thành công');
+}
+
+function cotolog_musics_form(){
+	$form['name'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Tên thể loại ca nhạc'), 
+    );
+    $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('submit')
+    );
+    return $form;
+}
+
+function cotolog_musics_form_submit($form,&$form_sate){
+	$term = array( 'vid' => 3, 'name' => $form_sate['values']['name'], 'parent' => 0 );
+	taxonomy_save_term($term);
+	drupal_set_message('Đã lưu thành công');
 }
 
 
