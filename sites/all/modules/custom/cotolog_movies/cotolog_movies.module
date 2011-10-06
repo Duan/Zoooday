@@ -57,14 +57,52 @@ function cotolog_movies_menu(){
 }
 
 function listcotologmusics(){
+	$listmusic = taxonomy_get_tree(3);
 	return 'this is my lab';
 }
 
 function listcotologkichs(){
+	$listkichs = taxonomy_get_tree(4);
 	return 'this is my lab';
 }
 
 function listcotologmovies(){
+	$listmovies = taxonomy_get_tree(2,0,-1,1);
+	dpm($listmovies);
+	  $rows = array();
+
+
+ foreach ($listmovies as $key){
+     $rows[] = array(//row
+      'data' => array( //row data
+        array( //Cell1
+          'data' => $key->tid,
+          'class' => '',
+        ),
+        array( 
+          'data' => $key->name,
+          'class' => '',
+        ),
+        array( 
+          'data' => l('xóa','node'),
+          'class' => '',
+        ),
+        array( 
+          'data' => l('Sửa','node'),
+          'class' => '',
+        ),
+      ),//endrow
+      'class' => '', //row class
+    );//endrow
+  }
+  $header = array(
+    array('data' => t('Mã số')),
+    array('data' => t('Tên')),
+    array('data' => t('Xóa')),
+    array('data' => t('Sửa')),
+  );
+  $output = theme_table($header, $rows);
+  return $output;
 	return 'this is my lab';
 }
 function cotolog_kichs_form(){
