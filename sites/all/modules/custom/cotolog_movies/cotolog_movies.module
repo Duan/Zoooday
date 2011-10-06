@@ -1,0 +1,59 @@
+<?php 
+
+function cotolog_movies_perm(){
+	return array('create cololog movies');
+}
+
+function cotolog_movies_menu(){
+	  $items = array();
+   $items['admin/mamagerca'] = array(
+   'title' => 'Đăng ký các thể loại',
+    'description' => 'Đăng ký rạp chiếu phim.',
+   'page callback' => 'drupal_get_form',
+    'page arguments' => array('cotolog_movies_form'),
+   'access arguments' => array('create cololog movies'),
+   );
+  $items['admin/mamagerca/cotologmovies'] = array(
+    'title' => 'Đăng ký rạp chiếu phim',
+    'description' => 'Đăng ký rạp chiếu phim.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('cotolog_movies_form'),
+    'access arguments' => array('create cololog movies'),
+    );
+    
+  return $items;
+}
+
+
+function cotolog_movies_form(){
+	$form['name'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Tên rạp chiếu'), 
+    );
+    $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('submit')
+    );
+    return $form;
+}
+
+function cotolog_movies_form_submit($form,&$form_sate){
+	$terms = array(
+    $form_sate['values']['name'] => array(
+      '2D' => array('06:00 AM','07:00 AM','08:00 AM','09:00 AM','10:00 AM','11:00 AM','12:00 AM','01:00 PM','02:00 PM','03:00 PM','04:00 PM','05:00 PM','06:00 PM','07:00 PM','08:00 PM','09:00 PM','10:00 PM','11:00 PM'),
+      '3D' => array('06:00 AM','07:00 AM','08:00 AM','09:00 AM','10:00 AM','11:00 AM','12:00 AM','01:00 PM','02:00 PM','03:00 PM','04:00 PM','05:00 PM','06:00 PM','07:00 PM','08:00 PM','09:00 PM','10:00 PM','11:00 PM'),
+      )
+      );
+	cotolog_movies_save_terms_recursive(2,$terms);
+	drupal_set_message('Đã lưu thành công');
+}
+
+function cotolog_movies_save_terms_recursive( $vid, &$terms, $ptid=0 ) {
+  foreach ( $terms as $k => $v ) {
+    $name = is_string( $k ) ? $k : $v;
+    $term = array( 'vid' => $vid, 'name' => $name, 'parent' => $ptid );
+    taxonomy_save_term( $term );
+    if ( is_array( $v ) && count( $v ) )
+      cotolog_movies_save_terms_recursive( $vid, $terms[ $k ], $term[ 'tid' ] );
+  }
+}

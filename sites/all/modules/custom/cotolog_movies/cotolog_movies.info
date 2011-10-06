@@ -1,0 +1,5 @@
+; $Id: cotolog_movies.info,v 1.3 2009/07/12 18:11:58 code Exp $
+name = cotolog_movies
+description = cotolog_movies.
+core = 6.x
+package = Codefreezing
