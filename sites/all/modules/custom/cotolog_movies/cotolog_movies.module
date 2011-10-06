@@ -52,23 +52,32 @@ function cotolog_movies_menu(){
     'page callback' => 'listcotologkichs',
     'access arguments' => array('create cololog movies'),
     );
+    $items['admin/deleteca'] = array(
+    'title' => 'Xóa',
+    'description' => 'Xóa',
+    'page callback' => 'deletecaterm',
+    'access arguments' => array('create cololog movies'),
+    'type' => MENU_CALLBACK,
+    );
     
   return $items;
 }
 
+function deletecaterm(){
+
+
+	$termid = arg(2);
+    taxonomy_del_term($termid);
+    drupal_set_message('Đã xóa thành công');
+	drupal_goto($_REQUEST['destination']);
+	
+	return 'this is my lab';
+}
+
+
 function listcotologmusics(){
-	$listmusic = taxonomy_get_tree(3);
-	return 'this is my lab';
-}
-
-function listcotologkichs(){
-	$listkichs = taxonomy_get_tree(4);
-	return 'this is my lab';
-}
-
-function listcotologmovies(){
-	$listmovies = taxonomy_get_tree(2,0,-1,1);
-	dpm($listmovies);
+		$listmovies = taxonomy_get_tree(3,0,-1,1);
+	
 	  $rows = array();
 
 
@@ -84,11 +93,11 @@ function listcotologmovies(){
           'class' => '',
         ),
         array( 
-          'data' => l('xóa','node'),
+          'data' => l('xóa','admin/deleteca/'.$key->tid, array('query' => drupal_get_destination(),'html'=>true)),
           'class' => '',
         ),
         array( 
-          'data' => l('Sửa','node'),
+          'data' => l('Sửa','admin/content/taxonomy/edit/term/'.$key->tid, array('query' => drupal_get_destination(),'html'=>true)),
           'class' => '',
         ),
       ),//endrow
@@ -103,7 +112,85 @@ function listcotologmovies(){
   );
   $output = theme_table($header, $rows);
   return $output;
-	return 'this is my lab';
+}
+
+function listcotologkichs(){
+		$listmovies = taxonomy_get_tree(4,0,-1,1);
+	
+	  $rows = array();
+
+
+ foreach ($listmovies as $key){
+     $rows[] = array(//row
+      'data' => array( //row data
+        array( //Cell1
+          'data' => $key->tid,
+          'class' => '',
+        ),
+        array( 
+          'data' => $key->name,
+          'class' => '',
+        ),
+        array( 
+          'data' => l('xóa','admin/deleteca/'.$key->tid, array('query' => drupal_get_destination(),'html'=>true)),
+          'class' => '',
+        ),
+        array( 
+          'data' => l('Sửa','admin/content/taxonomy/edit/term/'.$key->tid, array('query' => drupal_get_destination(),'html'=>true)),
+          'class' => '',
+        ),
+      ),//endrow
+      'class' => '', //row class
+    );//endrow
+  }
+  $header = array(
+    array('data' => t('Mã số')),
+    array('data' => t('Tên')),
+    array('data' => t('Xóa')),
+    array('data' => t('Sửa')),
+  );
+  $output = theme_table($header, $rows);
+  return $output;
+}
+
+function listcotologmovies(){
+	$listmovies = taxonomy_get_tree(2,0,-1,1);
+	
+	  $rows = array();
+
+
+ foreach ($listmovies as $key){
+     $rows[] = array(//row
+      'data' => array( //row data
+        array( //Cell1
+          'data' => $key->tid,
+          'class' => '',
+        ),
+        array( 
+          'data' => $key->name,
+          'class' => '',
+        ),
+        array( 
+          'data' => l('xóa','admin/deleteca/'.$key->tid, array('query' => drupal_get_destination(),'html'=>true)),
+          'class' => '',
+        ),
+        array( 
+          'data' => l('Sửa','admin/content/taxonomy/edit/term/'.$key->tid, array('query' => drupal_get_destination(),'html'=>true)),
+          'class' => '',
+        ),
+      ),//endrow
+      'class' => '', //row class
+    );//endrow
+  }
+  $header = array(
+    array('data' => t('Mã số')),
+    array('data' => t('Tên')),
+    array('data' => t('Xóa')),
+    array('data' => t('Sửa')),
+  );
+  $output = theme_table($header, $rows);
+  return $output;
+
 }
 function cotolog_kichs_form(){
 	$form['name'] = array(
