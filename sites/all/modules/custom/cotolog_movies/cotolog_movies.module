@@ -20,11 +20,23 @@ function cotolog_movies_menu(){
     'page arguments' => array('cotolog_movies_form'),
     'access arguments' => array('create cololog movies'),
     );
+  $items['admin/mamagerca/cotologmovies/listcotologmovies'] = array(
+    'title' => 'Danh sách rạp chiếu phim',
+    'description' => 'Đăng ký rạp chiếu phim.',
+    'page callback' => 'listcotologmovies',
+    'access arguments' => array('create cololog movies'),
+    );
   $items['admin/mamagerca/cotologmusics'] = array(
     'title' => 'Đăng ký Thể loại ca nhạc',
     'description' => 'Đăng ký Thể loại ca nhạc',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('cotolog_musics_form'),
+    'access arguments' => array('create cololog movies'),
+    );
+  $items['admin/mamagerca/cotologmusics/listcotologmusics'] = array(
+    'title' => 'Danh sách thể loại ca nhạc',
+    'description' => 'Danh sách thể loại ca nhạc',
+    'page callback' => 'listcotologmusics',
     'access arguments' => array('create cololog movies'),
     );
    $items['admin/mamagerca/cotologkichs'] = array(
@@ -34,10 +46,27 @@ function cotolog_movies_menu(){
     'page arguments' => array('cotolog_kichs_form'),
     'access arguments' => array('create cololog movies'),
     );
+   $items['admin/mamagerca/cotologkichs/listcotologkichs'] = array(
+    'title' => 'Danh sách rạp diễn kịch',
+    'description' => 'Đăng ký rạp diễn kịch nói',
+    'page callback' => 'listcotologkichs',
+    'access arguments' => array('create cololog movies'),
+    );
     
   return $items;
 }
 
+function listcotologmusics(){
+	return 'this is my lab';
+}
+
+function listcotologkichs(){
+	return 'this is my lab';
+}
+
+function listcotologmovies(){
+	return 'this is my lab';
+}
 function cotolog_kichs_form(){
 	$form['name'] = array(
       '#type' => 'textfield', 
