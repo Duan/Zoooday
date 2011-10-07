@@ -1,0 +1,128 @@
+.mail {
+	width: 590px;
+}
+.mail .header {
+	background: url("images/mail_header.png") right -100px no-repeat;
+	height: 50px;
+	padding-right: 5px;
+}
+.mail .header .header_left {
+	background: url("images/mail_header.png") left top no-repeat;
+	height: 50px;
+	padding-left: 5px;
+}
+.mail .header .header_content {
+	background: url("images/mail_header.png") 0 -50px repeat-x;
+	height: 50px;
+}
+.dc_close a {
+	background: url("images/close.gif") left center no-repeat;
+	width: 13px;
+	height: 13px;
+	float: right;
+	color: #ff0000;
+	margin: 14px 14px 0 0;
+}
+.dc_close a:hover {
+	text-decoration: none;
+	color: #000000;
+}
+.mail .header span {
+	padding: 12px 0 0 20px;
+	color: #016992;
+	display: inline-block;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.mail .content-popup {
+	background: #f8f8f8;
+	padding: 15px 20px;
+	border: none;
+}
+.mail .content-popup .wrap {
+	border: solid 1px #c0c0c0;
+	padding: 15px 40px 15px 40px;
+}
+.mail .content-popup .wrap .alert {
+	padding-left: 120px;
+	color: #ff0000;
+	display: block;
+}
+.mail .content-popup .wrap .label{
+	width:120px;
+	float:left;
+	padding-top:3px;
+}
+.mail .content-popup .wrap span {
+	color: #ff0000;
+}
+.mail .content-popup .wrap .hint{
+	font-size:11px;
+	color:#898989;
+	line-height:100%;
+	margin-bottom:10px;
+	margin-top:-7px;
+	padding-left:120px;
+}
+.mail .content-popup .wrap input, textarea, select {
+	border: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #fff;
+	padding: 4px;
+	height:16px;
+	margin-bottom:10px;
+	background:#1a94d3 url(images/line-input.gif) top repeat-x scroll;
+}
+.mail .but-wrap{
+	padding:10px 0 10px 120px;
+}
+.mail .but{
+	float:left;
+	margin-right:10px;
+}
+.mail .but .mid{
+	background:url(images/line-but-popup.gif) repeat-x scroll;
+	height:38px;
+	float:left;
+}
+.mail .but .left{
+	background:url(images/left-but-popup.gif) left no-repeat scroll;
+	height:38px;
+	float:left;
+}
+.mail .but .right{
+	background:url(images/right-but-popup.gif) right no-repeat scroll;
+	height:28px;
+	padding:10px 15px 0 15px;
+	text-align:center;
+	float:left;
+}
+.mail .but .right span{
+	color:#fff;
+	text-transform:uppercase;
+	text-decoration:none;
+}
+.mail .but .right span:hover{
+	color:#ffa12e;
+	text-decoration:none;
+}
+.mail .footer {
+	height: 5px;
+}
+.mail .footer {
+	background: url("images/mail_footer.png") right -5px no-repeat;
+	margin: 0;
+	padding: 0 5px 0 0;
+	border: 0;
+}
+.mail .footer .footer_left {
+	background: url("images/mail_footer.png") left top no-repeat;
+	padding-left: 5px;
+	height: 5px;
+}
+.mail .footer .footer_content {
+	background: #f8f8f8;
+	height: 5px;
+	font-size: 0;
+}
