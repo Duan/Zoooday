@@ -1,0 +1,27 @@
+<?php
+// $Id: admin_dashboard.install,v 1.4 2010/02/19 08:39:30 skilip Exp $
+
+/**
+ * Implementation of hook_install().
+ */
+function admin_dashboard_install() {
+  module_load_include('inc', 'admin_dashboard', 'admin_dashboard.admin');
+  admin_dashboard_menu_rebuild();
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function admin_dashboard_uninstall() {
+  global $user;
+  $theme_key = ($user->theme) ? $user->theme : variable_get('theme_default', 'garland');
+
+	$theme_path = drupal_get_path('theme', $theme_key);
+	$info = unserialize(db_result(db_query('SELECT info FROM {system} WHERE filename = "%s/%s.info"', $theme_path, $theme_key)));
+	unset($info['regions']['admin_dashboard']);
+	db_query('UPDATE {system} SET info = "%s" WHERE filename = "%s/%s.info"', serialize($info), $theme_path, $theme_key);
+
+  db_query("DELETE FROM {menu_links} WHERE link_path = '%s'", 'admin/build/menu-customize/admin-dashboard');
+  db_query("DELETE FROM {menu_links} WHERE menu_name = '%s'", 'admin-dashboard');
+  db_query("DELETE FROM {menu_custom} WHERE menu_name = '%s'", 'admin-dashboard');
+}

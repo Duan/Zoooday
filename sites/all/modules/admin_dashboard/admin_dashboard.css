@@ -1,0 +1,507 @@
+.admin_dashboard_menuitem {
+	position:relative;
+	width:39px;
+	height:58px;
+	float:left;
+	margin:0px 5px 0px 0px;
+	top:6px;
+}
+
+.pos_left .admin_dashboard_menuitem {
+	float:right;
+}
+
+#admin_dashboard_container.large .admin_dashboard_menuitem {
+	top:4px;
+}
+	
+.admin_dashboard_menuitem_icon {
+	position:absolute;
+	top:18px;
+	width:45px;
+	height:39px;
+	cursor:pointer;
+	z-index:4000;
+	background-repeat:no-repeat;
+  outline: none;
+}
+
+.admin_dashboard_menuitem_text_position {
+	height:1px;
+	width:1px;
+	position:absolute;
+	top:0px;
+	left:50%;
+}
+
+.admin_dashboard_menuitem_icontekst {
+  position:absolute;
+  left:-100px;
+  width:200px;
+  text-align:center;
+  white-space:nowrap;
+	visibility:hidden;
+  color:#FFFFFF;
+	font-weight:bold;
+	font-size:12px;
+	letter-spacing:0.0em;
+	font-family:Geneva, Arial, Helvetica, sans-serif;
+}
+
+#admin_dashboard_menuitems {
+	height:80px;
+	display:inline;
+}
+
+#admin_dashboard_container {
+	top:80px;
+	right:0px;
+	position:absolute;
+	padding:0px 0px 0px 26px;
+	z-index:1070;
+	overflow:hidden;
+	display:none;
+}
+
+#admin_dashboard_container.pos_left {
+	padding:0px 50px 0px 0px;
+	overflow:visible;
+}
+
+#temp_admin_dashboard_menu {
+  visibility: hidden;
+}
+
+#admin_dashboard_container #temp_admin_dashboard_menu {
+	background-image:url(images/menu_back.png);
+	background-repeat:repeat-x;
+  visibility: visible;
+}
+
+#admin_dashboard_container.large #temp_admin_dashboard_menu {
+	background-image:url(images/menu_back_large.png);
+}
+
+#admin_dashboard_container #admin_dashboard_content {
+	position:relative;
+	padding:0px 0px 0px 24px;
+	z-index:4000;
+}
+
+#admin_dashboard_container.pos_left #admin_dashboard_content {
+	padding:0px 24px 0px 0px;
+}
+
+#admin_dashboard_container #admin_dashboard_togglebar {
+	position:absolute;
+	width:26px;
+	height:77px;
+	top:0px;
+	right:0px;
+}
+
+#admin_dashboard_container.pos_left #admin_dashboard_togglebar {
+	left:0px;
+}
+
+#admin_dashboard_container.large #admin_dashboard_togglebar {
+	height:196px;
+}
+
+#admin_dashboard_container #temp_admin_dashboard_menu {
+	height:80px;
+}
+
+#admin_dashboard_togglebar_shadowleft {
+	background-image:url(images/togglebar_shadow_left.png);
+	width:3px;
+	height:77px;
+	position:absolute;
+}
+
+.pos_left #admin_dashboard_togglebar_shadowleft {
+	left:22px;
+	background-image:url(images/togglebar_shadow_left_flip.png);
+}
+
+#admin_dashboard_container.large #admin_dashboard_togglebar_shadowleft {
+	background-image:url(images/togglebar_shadow_left_large.png);
+	width:3px;
+	height:196px;
+}
+
+#admin_dashboard_container.large.pos_left #admin_dashboard_togglebar_shadowleft {
+	background-image:url(images/togglebar_shadow_left_large_flip.png);
+}
+
+#admin_dashboard_togglebar_shadowtop {
+	background-image:url(images/togglebar_shadow_top.png);
+	width:23px;
+	height:4px;
+	left:3px;
+	position:absolute;
+}
+
+.pos_left #admin_dashboard_togglebar_shadowtop {
+	left:0px;
+	background-image:url(images/togglebar_shadow_top_flip.png);
+}
+
+#admin_dashboard_mask {
+	width:100%;
+	height:100%;
+	left:0px;
+	top:0px;
+	position:absolute;
+	display:none;
+	cursor:move;
+	z-index:8888;
+}
+
+#admin_dashboard_mask_half {
+	width:50%;
+	height:100%;
+	left:0px;
+	top:0px;
+	position:absolute;
+	display:none;
+	cursor:move;
+	z-index:8900;
+}
+
+#admin_dashboard_togglebar_bar {
+	background-image:url(images/togglebar.png);
+	width:23px;
+	height:62px;
+	left:3px;
+	top:4px;
+	position:absolute;
+	cursor:pointer;
+}
+
+.pos_left #admin_dashboard_togglebar_bar {
+	left:0px;
+}
+
+#admin_dashboard_container.large #admin_dashboard_togglebar_bar {
+	background-image:url(images/togglebar_large.png);
+	width:23px;
+	height:181px;
+}
+
+#admin_dashboard_togglebar_bottom {
+	background-image:url(images/togglebar_shadow_bottom.png);
+	width:23px;
+	height:11px;
+	left:3px;
+	top:66px;
+	position:absolute;
+	background-repeat:no-repeat;
+}
+
+.pos_left #admin_dashboard_togglebar_bottom {
+	background-image:url(images/togglebar_shadow_bottom_flip.png);
+	left:0px;
+}
+
+#admin_dashboard_container.large #admin_dashboard_togglebar_bottom {
+	top:185px;
+}
+
+#admin_dashboard_container #admin_dashboard_settings {
+	width:24px;
+	height:77px;
+	z-index:4001;
+	background-image:url(images/togglebar_settings.png);
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+
+#admin_dashboard_container.large #admin_dashboard_settings {
+	width:24px;
+	height:196px;
+	background-image:url(images/togglebar_settings_large.png);
+}
+
+#admin_dashboard_container.pos_left #admin_dashboard_settings {
+	background-image:url(images/togglebar_settings_left.png);
+	right:0px;
+	left:auto;
+}
+
+#admin_dashboard_container.large.pos_left #admin_dashboard_settings {
+	background-image:url(images/togglebar_settings_large_left.png);
+}
+
+#test {
+	width:24px;
+}
+
+.admin_dashboard_settings_row_top {
+	border-bottom:2px solid #d3e7f4;
+}
+
+.admin_dashboard_settings_row {
+	height:38px;
+	font-size:18px;
+	width:auto;
+	border-bottom:1px solid #d3e7f4;
+	padding-left:10px;
+	position:relative;
+}
+
+.admin_dashboard_settings_icon {
+	position:absolute;
+	height:36px;
+	width:41px;
+	right:0px;
+	top:0px;
+	cursor:pointer;
+}
+
+.admin_dashboard_settings_text {
+	position:absolute;
+	left:10px;
+	top:8px;
+	font-family:Geneva,Arial Sans MS,cursive,sans-serif;
+}
+
+#admin_dashboard_block_container {
+  height:123px;
+  padding:0px 5px 0px 0px;
+  background:url(images/admin_dashboard_blocks_back.png) repeat-x;
+}
+
+.pos_left #admin_dashboard_block_container {
+  padding:0px 0px 0px 5px;
+}
+
+#admin_dashboard_block_container .block_wrapper {
+	float:left;
+	margin-top:14px;
+}
+
+.pos_left #admin_dashboard_block_container .block_wrapper {
+	float:right;
+}
+
+.block_wrapper {
+	margin:0px 0px 0px 5px;
+}
+
+.pos_left .block_wrapper {
+	margin:0px 5px 0px 0px;
+}
+
+.block_wrapper .left {
+	width:5px;
+	height:100px;
+	background-image:url(images/block_left.png);
+	float:left;
+}
+
+#admin_dashboard_container .block_wrapper .block {
+	background-image:url(images/block_center.png);
+	background-repeat:repeat-x;
+	height:100px;
+	float:left;
+}
+
+#admin_dashboard_container .block_wrapper .block-region {
+  color:white;
+  height:60px;
+}
+
+#admin_dashboard_container .block_wrapper .block .content {
+	overflow-y:auto;
+	overflow-x:hidden;
+	height:71px;
+	margin:0px;
+}
+
+#admin_dashboard_container .block_wrapper .block .content.nosubject {
+	height:61px;
+	margin:5px 0px;
+}
+
+.block_wrapper .right {
+	width:5px;
+	height:100px;
+	background-image:url(images/block_right.png);
+	float:left;
+}
+
+.settings_button {
+	position:relative;
+	left:4px;
+	top:15px;
+	margin-bottom:5px;
+	display:block;
+	width:16px;
+	height:16px;
+	cursor:pointer;
+	background-position:0px 0px;
+}
+
+#admin_dashboard_auto_hide_icon.settings_button:hover,
+#admin_dashboard_settings_icon.settings_button:hover {
+	background-position:0px 16px;
+}
+
+#admin_dashboard_auto_hide_icon.enabled {
+	background-image:url('images/auto_hide_icon_enabled.png');
+}
+
+/** THIS CODE OF CSS MAKES SURE THE THEME CSS WILL NOT SCREW UP OUR BLOCK CSS !!!! **/
+#admin_dashboard_block_container  .block_wrapper {
+	width:auto;
+	background:none;
+	position:static;
+	padding:0px;
+}
+
+#admin_dashboard_block_container .block {
+	background:none;
+	margin:0px;
+	height:auto;
+	width:auto;
+	position:static;
+	float:left;
+	clear:none;
+	padding:0px;
+}
+
+#admin_dashboard_block_container h2 {
+	background:none;
+	margin:0px;
+	width:auto;
+	height:auto;
+	padding:5px 0px 0px 0px;
+	line-height:100%;
+	color:white;
+}
+
+#admin_dashboard_block_container ul,
+#admin_dashboard_block_container ul li {
+  background: none;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  list-style-image: none;
+  list-style: circle;
+}
+
+#admin_dashboard_block_container ul {
+  margin-left: 18px;
+}
+
+#admin_dashboard_block_container a,
+#admin_dashboard_block_container ul li a {
+  color: #000;
+  text-decoration: underline;
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  line-height: 100%;
+  white-space: nowrap;
+}
+
+#admin_dashboard_block_container h2 span {
+	background:none;
+	margin:0px;
+	width:auto;
+	height:auto;
+	left:auto;
+	right:auto;
+}
+
+.admin_dashboard_menuitem ul {
+	padding:73px 0px 0px 0px;
+	position:absolute;	
+	top:0px;
+	margin:0px;
+	white-space:nowrap;
+	visibility:hidden;
+}
+
+.admin_dashboard_menuitem ul ul {
+  padding:0px 10px;
+	visibility:hidden;
+}
+
+.admin_dashboard_menuitem ul li {
+	padding:0px;
+	margin:0px;
+	list-style:none;
+	position:relative;
+	margin-bottom:8px;
+	background:none;
+}
+
+li .sub-menu-wrapper {
+	cursor:pointer;
+	filter:alpha(opacity=80);
+	-moz-opacity:.8;
+	opacity:.8;
+	padding-left:9px;
+	height:21px;
+	display:block;
+	background:url('images/submenu_right_active.png') no-repeat 100% 0px;
+}
+
+.pos_left li .sub-menu-wrapper {
+	background-image:url('images/submenu_left_active.png');
+	background-position: 0px 0px;
+}
+
+li .sub-menu-wrapper:hover {
+	filter:alpha(opacity=100);
+	-moz-opacity:1;
+	opacity:1;
+}
+
+li .sub-menu-mid {
+	background-image:url('images/submenu_mid_active.png');
+	position:relative;
+	height:21px;
+	margin-right:9px;
+	float:right;
+}
+
+.pos_left li .sub-menu-mid {
+	float:left;
+}
+
+li .sub-menu-mid a {
+  color:white;
+  text-decoration:none;
+	line-height:100%;
+	font-size:12px;
+	font-family:Geneva, Arial, Helvetica, sans-serif;
+  font-size-adjust:none;
+  font-style:normal;
+  font-variant:normal;
+	font-weight:bold;
+	display: block;
+	height: 17px;
+	padding-top: 4px;
+}
+
+li .sub-menu-right {
+	width:9px;
+	height:21px;
+	background:url('images/submenu_left_active.png') no-repeat;
+	position:absolute;
+	left:-9px;
+	top:0px;
+}
+
+.pos_left li .sub-menu-right {
+	background:url('images/submenu_right_active.png') no-repeat;
+	left:auto;
+	right:-9px;
+}
+
+#region_admin_dashboard {
+  display: none;
+}

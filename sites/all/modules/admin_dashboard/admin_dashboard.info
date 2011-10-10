@@ -1,0 +1,13 @@
+; $Id: admin_dashboard.info,v 1.4 2010/02/19 08:58:36 skilip Exp $
+name = Administration Dashboard
+description = A control panel for users with administrative rights
+package = User interface
+version = VERSION
+dependencies[] = block
+core = 6.x
+; Information added by drupal.org packaging script on 2010-09-09
+version = "6.x-2.1"
+core = "6.x"
+project = "admin_dashboard"
+datestamp = "1284019005"
+
