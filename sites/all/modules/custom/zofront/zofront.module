@@ -1,0 +1,109 @@
+<?php
+
+function zofront_block($op = 'list', $delta = 0, $edit = array()) {
+
+  if ($op == 'list') {
+    $blocks[0]['info'] = t('Banner Home');
+	$blocks[1]['info'] = t('Feature Film');
+	$blocks[2]['info'] = t('Feature Screenplay');
+	$blocks[3]['info'] = t('Feature News');
+	$blocks[4]['info'] = t('Right Calendar');
+    return $blocks;
+  }
+  elseif ($op == 'view') {
+    $block = array();
+
+    switch ($delta) {
+      case 0:
+        $block['content'] = zofront_bannerhome();
+        return $block;
+	  case 1:
+        $block['content'] = zofront_featfilm();
+        return $block;
+	  case 2:
+        $block['content'] = zofront_featscreen();
+        return $block;	
+	  case 3:
+        $block['content'] = zofront_featnews();
+        return $block;	
+	  case 4:
+        $block['content'] = zofront_calendar();
+        return $block;	
+    }
+  }
+}
+
+function zofront_calendar(){
+	$list ='';
+	$output .= theme('zofront_calendar',$list);
+	return $output;
+}
+
+function zofront_bannerhome(){
+	$list ='';
+	$output .= theme('zofront_bannerhome',$list);
+	return $output;
+}
+
+function zofront_featfilm(){
+	$list ='';
+	$output .= theme('zofront_featfilm',$list);
+	return $output;
+}
+
+function zofront_featscreen(){
+	$list ='';
+	$output .= theme('zofront_featscreen',$list);
+	return $output;
+}
+
+function zofront_featnews(){
+	$list ='';
+	$output .= theme('zofront_featnews',$list);
+	return $output;
+}
+
+
+function template_preprocess_zofront_bannerhome(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+function template_preprocess_zofront_featfilm(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+function template_preprocess_zofront_featscreen(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+function template_preprocess_zofront_featnews(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+function template_preprocess_zofront_calendar(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+
+
+
+function zofront_theme(){
+	return array(
+	  'zofront_bannerhome' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_bannerhome',
+      ),
+      'zofront_featfilm' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_featfilm',
+      ),
+      'zofront_featscreen' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_featscreen',
+      ),
+      'zofront_featnews' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_featnews',
+      ),
+      'zofront_calendar' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_calendar',
+      ),
+	);
+}
+
