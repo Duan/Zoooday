@@ -126,7 +126,7 @@ p, span, form, img{
 	line-height:normal;
 	width:100%;
 	height:100% !important;
-	margin-left:20px;
+	margin: 5px 20px 5px 20px;
 	padding-top:8px;
 }
 .banner-home .line .bar a.name{
@@ -144,6 +144,10 @@ p, span, form, img{
 .banner-home .line .tab{
 	width:240px;
 	float:right;
+}
+.banner-home .line .tab ul{
+	margin: 0;
+	padding: 0;
 }
 .banner-home .line .tab .each{
 	background:url('../images/line-tab-banner-top.gif') repeat-x scroll;
@@ -190,6 +194,7 @@ p, span, form, img{
 	font-size:18px;
 	line-height:20px;
 	height:100%;
+	margin: 0;
 }
 .banner-home .line .tab .thum.active{
 	color:#1a94d3;
@@ -250,7 +255,8 @@ p, span, form, img{
 	height: 30px;
 	color: #ffffff;
 	display: none;
-	margin-right: 14px;
+	margin: 35px 14px 0 0;
+	z-index: 20;
 	position: absolute;
 	width: 626px;
 }
@@ -415,6 +421,80 @@ p, span, form, img{
 #featured-film .next-block, #featured-film .prev-block {
     top: 20px;
 }
+
+.box-right{
+	background:url('../images/dot-white-right.png') repeat scroll;
+	width:270px;
+	margin-left:20px;
+	margin-bottom:10px;
+}
+.box-right .top{
+	background:url('../images/line-title-box-right.gif') repeat-x scroll;
+	width:270px;
+	height:31px;
+}
+.box-right .top .left{
+	background:url('../images/left-title-box-right.gif') left no-repeat scroll;
+	width:270px;
+	height:31px;
+}
+.box-right .top .right{
+	background:url('../images/right-title-box-right.gif') right no-repeat scroll;
+	width:255px;
+	height:24px;
+	padding:7px 0 0 15px;
+	color:#FFF;
+	text-transform:uppercase;
+}
+.box-right .content{
+	border-bottom:1px solid #97d0ec;
+	overflow-x:hidden;
+	overflow-y:auto;
+	.overflow-y:scroll
+}
+.box-right .item-sma{
+	padding:8px 10px 8px 15px;
+}
+.box-right .item-sma a.name:link,.box-right .item-sma a.name:active,.box-right .item-sma a.name:visited {
+    color: #1a94d3;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.box-right .item-sma a.name:hover {
+    color: #016992;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.box-right .item-sma .info{
+	padding-left:20px;
+}
+.box-right .dotted{
+	width:270px;
+	background:url('../images/dotted.gif') repeat-x scroll;
+	height:1px;
+	overflow:hidden;
+}
+.box-right .bottom{
+	width:270px;
+	height:32px;
+	border-top:1px solid #eef8fd;
+}
+.box-right .bottom .left{
+	background: url('../images/left-bottom-box.gif') left bottom no-repeat scroll;
+	width:270px;
+	height:32px;
+}
+.box-right .bottom .right{
+	background: url('../images/right-box-box.gif') right bottom no-repeat scroll;
+	width:255px;
+	height:25px;
+	padding:7px 0 0 15px;
+}
+
+
+
 /*-------------------------------*/
 #featured-music{
 	height: 272px;
@@ -893,76 +973,6 @@ a.range:hover{
 	float:left;
 }
 /*-------------------------------*/
-.box-right{
-	background:url('../images/dot-white-right.png') repeat scroll;
-	width:270px;
-	margin-left:20px;
-	margin-bottom:10px;
-}
-.box-right .top{
-	background:url('../images/line-title-box-right.gif') repeat-x scroll;
-	width:270px;
-	height:31px;
-}
-.box-right .top .left{
-	background:url('../images/left-title-box-right.gif') left no-repeat scroll;
-	width:270px;
-	height:31px;
-}
-.box-right .top .right{
-	background:url('../images/right-title-box-right.gif') right no-repeat scroll;
-	width:255px;
-	height:24px;
-	padding:7px 0 0 15px;
-	color:#FFF;
-	text-transform:uppercase;
-}
-.box-right .content{
-	border-bottom:1px solid #97d0ec;
-	overflow-x:hidden;
-	overflow-y:auto;
-	.overflow-y:scroll
-}
-.box-right .item-sma{
-	padding:8px 10px 8px 15px;
-}
-.box-right .item-sma a.name:link,.box-right .item-sma a.name:active,.box-right .item-sma a.name:visited {
-    color: #1a94d3;
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
-}
-.box-right .item-sma a.name:hover {
-    color: #016992;
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
-}
-.box-right .item-sma .info{
-	padding-left:20px;
-}
-.box-right .dotted{
-	width:270px;
-	background:url('../images/dotted.gif') repeat-x scroll;
-	height:1px;
-	overflow:hidden;
-}
-.box-right .bottom{
-	width:270px;
-	height:32px;
-	border-top:1px solid #eef8fd;
-}
-.box-right .bottom .left{
-	background: url('../images/left-bottom-box.gif') left bottom no-repeat scroll;
-	width:270px;
-	height:32px;
-}
-.box-right .bottom .right{
-	background: url('../images/right-box-box.gif') right bottom no-repeat scroll;
-	width:255px;
-	height:25px;
-	padding:7px 0 0 15px;
-}
 
 
 

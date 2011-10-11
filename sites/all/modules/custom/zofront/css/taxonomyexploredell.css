@@ -1,0 +1,77 @@
+  .slideshow{
+	    
+	    }
+		.slideshow h3 {
+			margin: 0;	
+			padding: 7px 0 0 0;
+			font-size: 16px;
+			text-transform: uppercase;
+		}
+
+		.slideshow #feature_list {
+			width: 750px;
+			height: 240px;
+			overflow: hidden;
+			position: relative;
+		}
+
+		.slideshow #feature_list ul {
+			position: absolute;
+			top: 0;
+			list-style: none;	
+			padding: 0;
+			margin: 0;
+		}
+
+		
+
+		
+		
+		.slideshow #tabs li img {
+			padding: 5px;
+			border: none;
+			float: left;
+			margin: 10px 10px 0 0;
+		}
+
+		.slideshow #tabs li a {
+			    color:#222222;
+    			display:block;
+    			height:49px;
+    			outline:medium none;
+    			padding:10px 10px 10px 67px;
+    			text-decoration:none;
+		}
+
+		.slideshow #tabs li a:hover {
+			text-decoration: underline;
+		}
+
+	
+		.slideshow #tabs li a.current:hover {
+			text-decoration: none;
+			cursor: default;
+		}
+
+		
+		.slideshow #tabs li a.current {
+			background: red;
+			color: #FFF;
+		}
+		.slideshow #output li {
+			position: absolute;
+			width: 463px;
+			height: 240px;
+			margin-top:4px;
+		}
+ 		.bentrai{
+ 			float:left;
+ 		}
+ 		.benphai{
+ 		       background:none repeat scroll 0 0 #BF202F;
+    float:right;
+    height:56px;
+    margin-right:175px;
+    width:123px;
+ 		}
+		

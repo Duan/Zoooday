@@ -1,0 +1,34 @@
+#myRoundabout{
+	width: 200px;	
+	top: 100px;
+	left: 198px;
+}
+   .roundabout-holder { padding: 0; height: 5em; width: 624px;list-style: none }
+   .roundabout-moveable-item {
+      height: 271px;
+      width: 398px;
+      cursor: pointer;
+      background-color: #ffc;
+      border: 1px solid #999;
+   }
+   .roundabout-moveable-item img{
+   		height: 230.35px;
+   		width: 338.3px;
+   }
+   .roundabout-in-focus { 
+  	 	cursor: auto; 
+   }
+#featured-film #next{
+	position: absolute;
+    left: 0px;
+    top: 120px;
+}
+#featured-film #prev{
+	position: absolute;
+    right: 30px;
+    top: 120px;
+}
+
+#featured-film ul li{
+	background: #ffffff;
+}

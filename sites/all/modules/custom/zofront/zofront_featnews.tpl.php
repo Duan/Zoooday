@@ -1,49 +1,24 @@
  <div class="bar-title">sự kiện mới</div>
-                <div id="featured-new">
-                	<div class="item">
-                    	<a href="#"><img src="images/pic6.jpg" width="90" height="90" /></a>
+                <div id="featured-new">               
+                <?php         
+                foreach ($list as $value) {
+                	
+                	?>
+                	 <div class="item">
+                    	<?php echo l(theme_imagecache('90X90', $value->field_hinh_dai_dien[0]['filepath']),'node/'.$value->nid,array('html'=>true));?>
                         <div class="content">
-                        	<p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
+                        	<p><a href="#" class="name"><strong><?php echo $value->title; ?></strong></a></p>
                             <div class="box">
-                            	<div class="location">Restaurant & Lounge</div>
-                                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
+                            	<div class="location"><?php $types = node_get_types(); echo $types[$value->type]->name;?></div>
+                                <div class="time"><?php echo format_date($value->field_ngay_dien[0]['value'],'custom','h:iA, l d/m/Y');?></div>
                             </div>
-                            Only chance to enjoy Jazz music from Chicago artists
+                            <?php echo $value->field_tom_tat[0]['value'];?>
                         </div>
                     </div>
-                    <div class="item">
-                    	<a href="#"><img src="images/pic6.jpg" width="90" height="90" /></a>
-                        <div class="content">
-                        	<p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-                            <div class="box">
-                            	<div class="location">Restaurant & Lounge</div>
-                                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-                            </div>
-                            Only chance to enjoy Jazz music from Chicago artists
-                        </div>
-                    </div>
-                    <div class="item">
-                    	<a href="#"><img src="images/pic6.jpg" width="90" height="90" /></a>
-                        <div class="content">
-                        	<p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-                            <div class="box">
-                            	<div class="location">Restaurant & Lounge</div>
-                                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-                            </div>
-                            Only chance to enjoy Jazz music from Chicago artists
-                        </div>
-                    </div>
-                    <div class="item">
-                    	<a href="#"><img src="images/pic6.jpg" width="90" height="90" /></a>
-                        <div class="content">
-                        	<p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-                            <div class="box">
-                            	<div class="location">Restaurant & Lounge</div>
-                                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-                            </div>
-                            Only chance to enjoy Jazz music from Chicago artists
-                        </div>
-                    </div>
+                	<?php
+                    	
+                }
+                ?>                	
                     <div class="clear"></div>
-                    <a href="#" class="more">xem tất cả</a>
+                    <?php echo l('Xem tất cả', 'user/', array('attributes' => array('class' => 'more')));?>                
                 </div>

@@ -1,5 +1,33 @@
 <?php
 
+function zofront_menu(){
+	 unset($items['taxonomy/term/%']); 
+   $items['taxonomy/term/%'] =array(
+      'title' => t('module'),
+      'page callback' => 'zoshowtaxonomyofterm',
+      'page arguments' => array(2),
+      'access arguments' => array('access term'),
+      'type' => MENU_CALLBACK,
+   );
+
+	
+	return $items;
+}
+
+
+function zoshowtaxonomyofterm($termid){
+  
+	$result = pager_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node INNER JOIN term_node term_node ON node.vid = term_node.vid WHERE term_node.tid = %d ORDER BY node_created DESC',8,0,NULL,$termid);
+	while ($rows = db_fetch_object($result)) {
+	    $node = node_load($rows->nid);
+		$list[] = $node;
+	}
+    $output .= theme('public_zofront_term',$list);
+	return $output;
+}
+
+
+
 function zofront_block($op = 'list', $delta = 0, $edit = array()) {
 
   if ($op == 'list') {
@@ -8,6 +36,7 @@ function zofront_block($op = 'list', $delta = 0, $edit = array()) {
 	$blocks[2]['info'] = t('Feature Screenplay');
 	$blocks[3]['info'] = t('Feature News');
 	$blocks[4]['info'] = t('Right Calendar');
+	$blocks[5]['info'] = t('Right Hot Event');
     return $blocks;
   }
   elseif ($op == 'view') {
@@ -29,8 +58,17 @@ function zofront_block($op = 'list', $delta = 0, $edit = array()) {
 	  case 4:
         $block['content'] = zofront_calendar();
         return $block;	
+	  case 5:
+        $block['content'] = zofront_hot_event();
+        return $block;		
     }
   }
+}
+
+function zofront_hot_event(){
+	$list ='';
+	$output .= theme('zofront_hot_event',$list);
+	return $output;
 }
 
 function zofront_calendar(){
@@ -46,19 +84,37 @@ function zofront_bannerhome(){
 }
 
 function zofront_featfilm(){
-	$list ='';
+	$path = drupal_get_path('module','zofront');
+	drupal_add_css($path.'/css/featurefilm.css');
+	$result = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node WHERE node.type in ("movies") ORDER BY node_created DESC LIMIT 0,4');
+    while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
 	$output .= theme('zofront_featfilm',$list);
 	return $output;
 }
 
 function zofront_featscreen(){
-	$list ='';
+	$path = drupal_get_path('module','zofront');
+	drupal_add_js($path.'/js/amazon_scroller.js');
+	drupal_add_css($path.'/css/amazon_scroller.css');
+    $result = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node WHERE node.type in ("kich_noi") ORDER BY node_created DESC LIMIT 0,8');
+    while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
 	$output .= theme('zofront_featscreen',$list);
 	return $output;
 }
 
 function zofront_featnews(){
-	$list ='';
+	$result = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node ORDER BY node_created DESC LIMIT 0,4');
+	
+	while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
 	$output .= theme('zofront_featnews',$list);
 	return $output;
 }
@@ -77,6 +133,14 @@ function template_preprocess_zofront_featnews(&$variables){
 	 $variables['list'] = $variables['list'];
 }
 function template_preprocess_zofront_calendar(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+
+function template_preprocess_public_zofront_term(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+
+function template_preprocess_zofront_hot_event(&$variables){
 	 $variables['list'] = $variables['list'];
 }
 
@@ -104,6 +168,17 @@ function zofront_theme(){
 	      'arguments' => array('list'=>NULL),
 		  'template' => 'zofront_calendar',
       ),
+
+      'public_zofront_term' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'public_zofront_term',
+      ),
+
+      'zofront_hot_event' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_hot_event',
+      ),
+
 	);
 }
 

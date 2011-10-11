@@ -73,35 +73,42 @@
 					<div class="submenu">
 						<!-- navi1 -->
 						<div class="each navi1">
-							<a href="#">Đồng Dao</a>
+						<?php 
+						foreach (taxonomy_get_tree(3) as $value){
+							?>
+							<?php echo l($value->name, 'taxonomy/term/'.$value->tid);?>
 							<span>|</span>
-							<a href="#">ATB</a>
-							<span>|</span>
-							<a href="#">Văn nghệ</a>
-							<span>|</span>
-							<a href="#">Sài Gòn mới</a>
-							<span>|</span>
-							<a href="#">Khác</a>
+							<?php 
+						}
+						?>
+							
 						</div>
 						<!-- navi1 -->
 						
 						<!-- navi2 -->
 						<div class="each navi2">
-							<a href="#">Megastar</a>
+							<?php 
+						foreach (taxonomy_get_tree(2,0,-1,1) as $value){
+							?>
+							<?php echo l($value->name, 'taxonomy/term/'.$value->tid);?>
 							<span>|</span>
-							<a href="#">Cinebox</a>
-							<span>|</span>
-							<a href="#">Diamond Plaza</a>
+							<?php 
+						}
+						?>
 						</div>
 						<!-- navi2 -->
                         
                         <!-- navi3 -->
 						<div class="each navi3">
-							<a href="#">Phú Nhuận</a>
+					   <?php 
+					   
+						foreach (taxonomy_get_tree(4) as $value){
+							?>
+							<?php echo l($value->name, 'taxonomy/term/'.$value->tid);?>
 							<span>|</span>
-							<a href="#">5B</a>
-							<span>|</span>
-							<a href="#">Idecaf</a>
+							<?php 
+						}
+						?>
 						</div>
 						<!-- navi3 -->
                         
