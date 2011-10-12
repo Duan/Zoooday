@@ -260,6 +260,7 @@ jQuery.fn.roundabout_adjustTilt = function(delta) {
 };
 
 jQuery.fn.roundabout_animateToBearing = function(bearing) {
+		
 	bearing = jQuery.roundabout_toFloat(bearing);
 	var currentTime = new Date();
 	var duration    = (typeof arguments[1] == 'undefined') ? null : arguments[1];
@@ -301,6 +302,7 @@ jQuery.fn.roundabout_animateToBearing = function(bearing) {
 };
 
 jQuery.fn.roundabout_animateToDelta = function(delta) {
+	
 	var duration = arguments[1], easing = arguments[2];
 	this.each(function(i) {
 		delta = jQuery.roundabout_getBearing(jQuery(this)) + jQuery.roundabout_toFloat(delta);
@@ -322,6 +324,8 @@ jQuery.fn.roundabout_animateToChild = function(childPos) {
 };
 
 jQuery.fn.roundabout_animateToNearbyChild = function(passedArgs, which) {
+
+
 	var duration = passedArgs[0], easing = passedArgs[1];
 	this.each(function(i) {
 		var data     = jQuery(this).data('roundabout');
@@ -337,7 +341,7 @@ jQuery.fn.roundabout_animateToNearbyChild = function(passedArgs, which) {
 			//    we are reflecting and we're moving previous
 			if ((reflect === false && which === 'next') || (reflect === true && which !== 'next')) {
 				bearing = (bearing === 0) ? 360 : bearing;
-							
+				
 				// counterclockwise
 				while (true && j < length) {
 					range = { lower: jQuery.roundabout_toFloat(period * j), upper: jQuery.roundabout_toFloat(period * (j + 1)) };
@@ -346,7 +350,7 @@ jQuery.fn.roundabout_animateToNearbyChild = function(passedArgs, which) {
 					if (bearing <= range.upper && bearing > range.lower) {
 						jQuery(this).roundabout_animateToDelta(bearing - range.lower, duration, easing);
 						break;
-					}
+					}		
 					j++;
 				}
 			} else {
@@ -368,6 +372,7 @@ jQuery.fn.roundabout_animateToNearbyChild = function(passedArgs, which) {
 };
 
 jQuery.fn.roundabout_animateToNextChild = function() {	
+
 	return this.roundabout_animateToNearbyChild(arguments, 'next');
 };
 
@@ -377,6 +382,7 @@ jQuery.fn.roundabout_animateToPreviousChild = function() {
 
 // moves a given angle to the focus by the shortest means possible
 jQuery.fn.roundabout_animateAngleToFocus = function(target) {
+		
 	var duration = arguments[1], easing = arguments[2];
 	this.each(function(i) {
 		var delta = jQuery.roundabout_getBearing(jQuery(this)) - target;
@@ -391,6 +397,9 @@ jQuery.fn.roundabout_animateAngleToFocus = function(target) {
 };
 
 jQuery.fn.roundabout_updateChildPositions = function() {
+	
+	$('.description').hide()///////****Phuc code 
+	
 	this.each(function(i) {
 		var ref = jQuery(this), data = ref.data('roundabout');
 		var inFocus = -1;
@@ -414,6 +423,9 @@ jQuery.fn.roundabout_updateChildPositions = function() {
 			if (jQuery.roundabout_updateChildPosition(jQuery(this), ref, info, i) && info.animating === 0) {
 				inFocus = i;
 				jQuery(this).addClass('roundabout-in-focus');
+				
+				////////****Phuc code 
+				$(this).find('.description').show();	
 			} else {
 				jQuery(this).removeClass('roundabout-in-focus');
 			}

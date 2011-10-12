@@ -9,16 +9,116 @@ function zofront_menu(){
       'access arguments' => array('access term'),
       'type' => MENU_CALLBACK,
    );
-
-	
+   $items['eventnews'] =array(
+      'title' => t('eventnews'),
+      'page callback' => 'zoshoweventnews',
+      'access arguments' => array('access term'),
+      'type' => MENU_CALLBACK,
+   );
+   $items['othernews'] =array(
+      'title' => t('othernews'),
+      'page callback' => 'zoshowothernews',
+      'access arguments' => array('access term'),
+      'type' => MENU_CALLBACK,
+   );
+    $items['music'] =array(
+      'title' => t('music'),
+      'page callback' => 'zoshowmainmusic',
+      'access arguments' => array('access term'),
+      'type' => MENU_CALLBACK,
+   );
+    $items['movies'] =array(
+      'title' => t('movies'),
+      'page callback' => 'zoshowmainmovies',
+      'access arguments' => array('access term'),
+      'type' => MENU_CALLBACK,
+   );
+	$items['story'] =array(
+      'title' => t('story'),
+      'page callback' => 'zoshowmainstory',
+      'access arguments' => array('access term'),
+      'type' => MENU_CALLBACK,
+   );
 	return $items;
 }
 
 
-function zoshowtaxonomyofterm($termid){
-  
-	$result = pager_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node INNER JOIN term_node term_node ON node.vid = term_node.vid WHERE term_node.tid = %d ORDER BY node_created DESC',8,0,NULL,$termid);
+function zoshowmainmusic(){
+		$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("music") ORDER BY node_created DESC',8,0,NULL);	
 	while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
+	$output .= theme('public_zofront_term',$list);
+	return $output;
+	
+	
+}
+
+function zoshowmainmovies(){
+	
+		$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("movies") ORDER BY node_created DESC',8,0,NULL);	
+	while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
+	$output .= theme('public_zofront_term',$list);
+	return $output;
+}
+
+function zoshowmainstory(){
+		$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("kich_noi") ORDER BY node_created DESC',8,0,NULL);	
+	while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
+	$output .= theme('public_zofront_term',$list);
+	return $output;
+}
+
+function zoshowothernews(){
+	$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("su_kien_khac") ORDER BY node_created DESC',8,0,NULL);	
+	while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
+	$output .= theme('public_zofront_term',$list);
+	return $output;
+}
+
+
+function zoshoweventnews(){
+$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type not in ("main_slide") ORDER BY node_created DESC',8,0,NULL);
+	
+	while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
+	$output .= theme('public_zofront_term',$list);
+	return $output;
+}
+
+function zoshowtaxonomyofterm($termid){
+    $checkpaent = taxonomy_get_children($termid);
+    $getlist = array_keys($checkpaent);
+    if (!empty($checkpaent)){    	
+    	
+    	$valuearg1 = $getlist[0];
+    	$valuearg2 = $getlist[1];
+    $result = pager_query('SELECT node.nid AS nid,
+   node.title AS node_title,
+   node.created AS node_created
+ FROM node node 
+ LEFT JOIN term_node term_node ON node.vid = term_node.vid
+ LEFT JOIN term_data term_data ON term_node.tid = term_data.tid
+ LEFT JOIN term_hierarchy term_hierarchy ON term_data.tid = term_hierarchy.tid
+ WHERE term_hierarchy.parent = %d OR term_hierarchy.parent = %d
+   ORDER BY node_created DESC',8,0,NULL,$valuearg1,$valuearg2);
+    }else {
+ $result = pager_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node INNER JOIN term_node term_node ON node.vid = term_node.vid WHERE term_node.tid = %d ORDER BY node_created DESC',8,0,NULL,$termid);	
+    }
+	while ($rows = db_fetch_object($result)) {
+		
 	    $node = node_load($rows->nid);
 		$list[] = $node;
 	}
@@ -66,7 +166,13 @@ function zofront_block($op = 'list', $delta = 0, $edit = array()) {
 }
 
 function zofront_hot_event(){
-	$list ='';
+	
+	$list ='';	
+	$result = db_query('SELECT node.nid AS nid FROM node node WHERE (node.type not in ("main_slide")) AND (node.sticky <> 0)');
+     while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
 	$output .= theme('zofront_hot_event',$list);
 	return $output;
 }
@@ -78,7 +184,19 @@ function zofront_calendar(){
 }
 
 function zofront_bannerhome(){
+	$query .= 'SELECT * ';
+	$query .= 'FROM {node} n ';
+	$query .= 'WHERE n.type in ("main_slide") ';
+	$query .= 'AND n.status  = 1 ';
+	$query .= 'ORDER BY n.nid DESC ';
+	$query .= 'LIMIT 0,4 ';
 	$list ='';
+	
+	$result = db_query($query);
+	while($row = db_fetch_object($result)){
+		$list[] = node_load($row->nid);
+	}
+	
 	$output .= theme('zofront_bannerhome',$list);
 	return $output;
 }
@@ -86,6 +204,8 @@ function zofront_bannerhome(){
 function zofront_featfilm(){
 	$path = drupal_get_path('module','zofront');
 	drupal_add_css($path.'/css/featurefilm.css');
+	drupal_add_js($path.'/js/jquery.roundabout.js');
+	$list ='';
 	$result = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node WHERE node.type in ("movies") ORDER BY node_created DESC LIMIT 0,4');
     while ($rows = db_fetch_object($result)) {
 		$node = node_load($rows->nid);
@@ -101,6 +221,11 @@ function zofront_featscreen(){
 	drupal_add_css($path.'/css/amazon_scroller.css');
     $result = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node WHERE node.type in ("kich_noi") ORDER BY node_created DESC LIMIT 0,8');
     while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
+	$result = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node WHERE node.type in ("kich_noi")	ORDER BY node_created DESC LIMIT 0,4');
+	while ($rows = db_fetch_object($result)) {
 		$node = node_load($rows->nid);
 		$list[] = $node;
 	}

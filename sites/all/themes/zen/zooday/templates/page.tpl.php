@@ -16,7 +16,9 @@
   <div class="wapper"><div>
 
     <div class="head">
-        <div class="logo"></div>
+        <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
+        	<div class="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></div>
+    	</a>
         <div class="search">
             <p>TÌM SỰ KIỆN</p>
             <img src="/sites/all/themes/zen/zooday/images/left-search.png" width="5" height="31" class="left" />
@@ -52,19 +54,19 @@
 								<a href="#">Zooo...day</a>
 							</li>
 							<li>
-								<a href="#">Sự kiện mới</a>
+								<?php echo l('Sự kiện mới','eventnews');?>
 							</li>
 							<li>
-								<a MChildren="navi1" href="#">Ca nhạc</a>
+								<?php echo l('Ca nhạc','music',array('attributes' => array('MChildren' => 'navi1')));?>
 							</li>
 							<li>
-								<a MChildren="navi2" href="#">Phim</a>
+								<?php echo l('Phim','movies',array('attributes' => array('MChildren' => 'navi2')));?>
 							</li>
 							<li>
-								<a MChildren="navi3" href="#">Kịch nói</a>
+								<?php echo l('Kịch nói','story',array('attributes' => array('MChildren' => 'navi3')));?>
 							</li>
 							<li>
-								<a MChildren="navi4" href="#">Sự kiện khác</a>
+								<?php echo l('Sự kiện khác','othernews',array('attributes' => array('MChildren' => 'navi4')));?>
 							</li>
 						</div>
                     </ul>

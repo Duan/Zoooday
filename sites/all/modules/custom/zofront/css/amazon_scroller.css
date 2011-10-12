@@ -55,24 +55,32 @@
 .amazon_scroller_mask a.img_block{
 	position: relative;
 }
-.amazon_scroller_mask a.img_block .bot_bottom{
+.amazon_scroller_mask  .bot_bottom{
 	background: url("../images/dot-black.png") repeat scroll 0 0 transparent;
     color: #FFFFFF;
     height: 40px;
     line-height: 17px;
-	bottom: 2px;
+	bottom: 4px;
     padding: 10px;
     position: absolute;
     text-align: left;
     width: 150px;
 }
-.amazon_scroller_mask a.img_block .title{
+.amazon_scroller_mask .title {
+	margin: -4px 0 0px 0;
+}
+
+
+.amazon_scroller_mask .title a{
  	color: #EA9D31;
     margin: 0;
     padding-bottom: 2px;
+    font-size: 1em;
     text-transform: uppercase;
 }
-.amazon_scroller_mask a.img_block .place{
+
+
+.amazon_scroller_mask .place{
  	color: #FFFFFF;
     font-size: 0.9em;
 }

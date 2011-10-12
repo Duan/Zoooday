@@ -1,0 +1,16 @@
+.rate-info {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.rate-widget .item-list{
+    
+}
+
+.rate-widget .item-list ul{
+    float:left;
+    padding:0;
+    margin-bottom:0;
+    margin-left:0;
+    margin-top:0;  
+}

@@ -20,26 +20,26 @@ $(document).ready(function(){
                <ul>
                    <?php 
                    foreach ($list as $value){
-                   
-                   
-                   
                    ?>
                    <li>
-               
-                   		<a class="img_block" href="link1" title="title1">
-                   		<?php 
-                   		   echo theme_imagecache('276X170', $value->field_hinh_dai_dien[0]['filepath']);
+						<?php 
+                   		   echo l(theme_imagecache('276X170', $value->field_hinh_dai_dien[0]['filepath']),'node/'.$value->nid,array('html'=>TRUE));
                    		?>
                    			<div class="bot_bottom">
                					<div class="title">
-		                   				<?php echo $value->title;?>
+		                   				<?php echo l($value->title,'node/'.$value->nid);?>
 	                   			</div>
-	                   			<div class="place">
-		                   				<?php echo $value->title;?>
+ 								<div class="place">
+ 								<?php
+									foreach ($value->taxonomy as $value) {
+										echo $value->name;
+									}
+ 								?>
+		                   				
 	                   			</div>
                    			</div>
                    			
-                   		</a>
+                   
                    	</li>
                 <?php }?>
                </ul>

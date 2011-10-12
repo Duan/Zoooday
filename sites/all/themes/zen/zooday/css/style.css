@@ -46,7 +46,7 @@ p, span, form, img{
 	margin:0 auto;
 }
 .logo{
-	background:url('../images/logo.png') no-repeat scroll;
+/*	background:url('../images/logo.png') no-repeat scroll;*/
 	width:425px;
 	height:106px;
 	margin-left:50px;
@@ -191,7 +191,7 @@ p, span, form, img{
 	display: none;
 }
 .banner-home .line .tab .each table{
-	font-size:18px;
+	font-size:14px;
 	line-height:20px;
 	height:100%;
 	margin: 0;
@@ -319,7 +319,7 @@ p, span, form, img{
 }
 #featured-film .description {
     background: url('../images/dot-black.png') repeat scroll;
-    bottom: 0;
+    bottom: -10px;
 	.bottom:3px;
     color: #FFFFFF;
     display: none;
@@ -351,7 +351,7 @@ p, span, form, img{
 	width:60px;
 }
 #featured-film .description .right .star{
-	background:url('../images/star.png') top left no-repeat scroll;
+	/*background:url('../images/star.png') top left no-repeat scroll;*/
 	width:45px;
 	height:8px;
 	margin-bottom:5px;

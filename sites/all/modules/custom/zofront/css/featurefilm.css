@@ -1,34 +1,47 @@
 #myRoundabout{
-	width: 200px;	
-	top: 100px;
-	left: 198px;
+    left: 198px;
+    top: 130px;
+    width: 200px;
 }
-   .roundabout-holder { padding: 0; height: 5em; width: 624px;list-style: none }
+   .roundabout-holder { padding: 0; height: 0em; width: 624px;list-style: none }
    .roundabout-moveable-item {
-      height: 271px;
-      width: 398px;
+      height: 240px;
+	  width: 398px;
       cursor: pointer;
       background-color: #ffc;
-      border: 1px solid #999;
+   
    }
+
    .roundabout-moveable-item img{
-   		height: 230.35px;
-   		width: 338.3px;
+   		width: 100%
    }
    .roundabout-in-focus { 
   	 	cursor: auto; 
    }
 #featured-film #next{
+	background: url('../images/left-slide-but.png') no-repeat scroll 0 0 transparent;
 	position: absolute;
-    left: 0px;
+	width: 33px;
+	height: 40px;	
+    left: -15px;
     top: 120px;
 }
 #featured-film #prev{
+	background: url('../images/right-slide-but.png') no-repeat scroll 0 0 transparent;
 	position: absolute;
-    right: 30px;
+	width: 33px;
+	height: 40px;	
+    right: 15px;
     top: 120px;
 }
 
 #featured-film ul li{
-	background: #ffffff;
+}
+.rate-widget .item-list ul {
+    float: right;
+    margin-bottom: 0;
+    margin-right: 0;
+    margin-top: -5px;
+    padding: 0;
+    width: 80px;
 }

@@ -7,7 +7,7 @@
                 	 <div class="item">
                     	<?php echo l(theme_imagecache('90X90', $value->field_hinh_dai_dien[0]['filepath']),'node/'.$value->nid,array('html'=>true));?>
                         <div class="content">
-                        	<p><a href="#" class="name"><strong><?php echo $value->title; ?></strong></a></p>
+                        	<p><?php echo l('<strong>'.$value->title.'</strong>','node/'.$value->nid,array('html'=>true,'attributes' => array('class' => 'name'))); ?></p>
                             <div class="box">
                             	<div class="location"><?php $types = node_get_types(); echo $types[$value->type]->name;?></div>
                                 <div class="time"><?php echo format_date($value->field_ngay_dien[0]['value'],'custom','h:iA, l d/m/Y');?></div>
