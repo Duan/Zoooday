@@ -1,0 +1,19 @@
+.slide ul{
+	margin: 0;
+	padding: 0;
+}
+.slide .hide_img{
+	display: none;
+}
+.slide .hide_info{
+	display: none;
+}
+.slide .mask td{
+	margin: 0px 0 0;
+	height: 33px;
+	overflow: hidden;
+	float: left
+}
+.banner .main_img{
+	display: block;
+}

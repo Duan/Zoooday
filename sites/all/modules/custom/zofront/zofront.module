@@ -44,11 +44,20 @@ function zofront_menu(){
 
 
 function zoshowmainmusic(){
-		$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("music") ORDER BY node_created DESC',8,0,NULL);	
+	$path = drupal_get_path('module','zofront');
+	drupal_add_css($path.'/css/music.css');
+	$result1 = db_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("music") ORDER BY node_created DESC LIMIT 0,4');
+    while ($rows1 = db_fetch_object($result1)) {
+		$node1 = node_load($rows1->nid);
+		$queryorther .= ' AND node.nid != '.$rows1->nid;
+		$list1[] = $node1;
+	}
+	$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("music")'.$queryorther.' ORDER BY node_created DESC',8,0,NULL);	
 	while ($rows = db_fetch_object($result)) {
 		$node = node_load($rows->nid);
 		$list[] = $node;
 	}
+	$output .= theme('slide_show_music',$list1);
 	$output .= theme('public_zofront_term',$list);
 	return $output;
 	
@@ -56,23 +65,58 @@ function zoshowmainmusic(){
 }
 
 function zoshowmainmovies(){
-	
-		$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("movies") ORDER BY node_created DESC',8,0,NULL);	
+	$result = db_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("movies") ORDER BY node_created DESC LIMIT 0,4');
 	while ($rows = db_fetch_object($result)) {
 		$node = node_load($rows->nid);
 		$list[] = $node;
 	}
-	$output .= theme('public_zofront_term',$list);
+	$output .= theme('slide_show_movies',$list);
+	
+	//dang chieu
+	$today = getdate();
+	
+	$dayset = $today['year'].'-'.$today['mon'].'-'.$today['mday'];
+	$resultdangchieu = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node LEFT JOIN content_field_ngay_dien node_data_field_ngay_dien ON node.vid = node_data_field_ngay_dien.vid WHERE (DATE_FORMAT(ADDTIME(FROM_UNIXTIME(node_data_field_ngay_dien.field_ngay_dien_value), SEC_TO_TIME(25200)), "%%Y-%%m-%%d") <= "%s") AND (node.type in ("movies")) ORDER BY node_created DESC',$dayset);
+    while ($rowcs = db_fetch_object($resultdangchieu)) {
+		$nodedangchieu = node_load($rowcs->nid);
+		$listdangchieu[] = $nodedangchieu;
+	}
+   	$output .= theme('show_trinhchieu',$listdangchieu);
+   	
+   	$resultsapchieu = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node LEFT JOIN content_field_ngay_dien node_data_field_ngay_dien ON node.vid = node_data_field_ngay_dien.vid WHERE (DATE_FORMAT(ADDTIME(FROM_UNIXTIME(node_data_field_ngay_dien.field_ngay_dien_value), SEC_TO_TIME(25200)), "%%Y-%%m-%%d") > "%s") AND (node.type in ("movies")) ORDER BY node_created DESC',$dayset);
+    while ($rowss = db_fetch_object($resultsapchieu)) {
+		$nodesapchieu = node_load($rowss->nid);
+		$listsapchieu[] = $nodesapchieu;
+	}
+   	$output .= theme('show_trinhchieu',$listsapchieu);
 	return $output;
 }
 
 function zoshowmainstory(){
-		$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("kich_noi") ORDER BY node_created DESC',8,0,NULL);	
+	$result = db_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("kich_noi") ORDER BY node_created DESC LIMIT 0,4');
 	while ($rows = db_fetch_object($result)) {
 		$node = node_load($rows->nid);
 		$list[] = $node;
 	}
-	$output .= theme('public_zofront_term',$list);
+	$output .= theme('slide_show_kich_noi',$list);
+	
+	//dang chieu
+	$today = getdate();
+	
+	$dayset = $today['year'].'-'.$today['mon'].'-'.$today['mday'];
+	$resultdangchieu = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node LEFT JOIN content_field_ngay_dien node_data_field_ngay_dien ON node.vid = node_data_field_ngay_dien.vid WHERE (DATE_FORMAT(ADDTIME(FROM_UNIXTIME(node_data_field_ngay_dien.field_ngay_dien_value), SEC_TO_TIME(25200)), "%%Y-%%m-%%d") <= "%s") AND (node.type in ("kich_noi")) ORDER BY node_created DESC',$dayset);
+    while ($rowcs = db_fetch_object($resultdangchieu)) {
+		$nodedangchieu = node_load($rowcs->nid);
+		$listdangchieu[] = $nodedangchieu;
+	}
+   	$output .= theme('show_trinhchieu',$listdangchieu);
+   	
+   	$resultsapchieu = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node LEFT JOIN content_field_ngay_dien node_data_field_ngay_dien ON node.vid = node_data_field_ngay_dien.vid WHERE (DATE_FORMAT(ADDTIME(FROM_UNIXTIME(node_data_field_ngay_dien.field_ngay_dien_value), SEC_TO_TIME(25200)), "%%Y-%%m-%%d") > "%s") AND (node.type in ("kich_noi")) ORDER BY node_created DESC',$dayset);
+    while ($rowss = db_fetch_object($resultsapchieu)) {
+		$nodesapchieu = node_load($rowss->nid);
+		$listsapchieu[] = $nodesapchieu;
+	}
+   	$output .= theme('show_trinhchieu',$listsapchieu);
 	return $output;
 }
 
@@ -137,6 +181,10 @@ function zofront_block($op = 'list', $delta = 0, $edit = array()) {
 	$blocks[3]['info'] = t('Feature News');
 	$blocks[4]['info'] = t('Right Calendar');
 	$blocks[5]['info'] = t('Right Hot Event');
+	$blocks[6]['info'] = t('Right Film');
+	$blocks[7]['info'] = t('Right ScreenPlay');
+	$blocks[8]['info'] = t('Right New Event');
+	$blocks[9]['info'] = t('Right Smail Hot Event');
     return $blocks;
   }
   elseif ($op == 'view') {
@@ -160,9 +208,45 @@ function zofront_block($op = 'list', $delta = 0, $edit = array()) {
         return $block;	
 	  case 5:
         $block['content'] = zofront_hot_event();
+        return $block;	
+	  case 6:
+        $block['content'] = zofront_right_film();
+        return $block;	
+	  case 7:
+        $block['content'] = zofront_right_screen();
         return $block;		
+	  case 8:
+        $block['content'] = zofront_right_new_event();
+        return $block;	
+	  case 9:
+        $block['content'] = zofront_right_smail_hot_event();
+        return $block;	
     }
   }
+}
+
+function zofront_right_smail_hot_event(){
+	$list = array();
+	$output .= theme('zofront_right_smail_hot_event',$list);
+	return $output;	
+}
+
+function zofront_right_new_event(){
+	$list = array();
+	$output .= theme('zofront_right_new_event',$list);
+	return $output;	
+}
+
+function zofront_right_film(){
+	$list = array();
+	$output .= theme('zofront_right_film',$list);
+	return $output;	
+}
+
+function zofront_right_screen(){
+	$list = array();
+	$output .= theme('zofront_right_screen',$list);
+	return $output;	
 }
 
 function zofront_hot_event(){
@@ -234,7 +318,7 @@ function zofront_featscreen(){
 }
 
 function zofront_featnews(){
-	$result = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node ORDER BY node_created DESC LIMIT 0,4');
+	$result = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node WHERE (node.type not in ("main_slide")) ORDER BY node_created DESC LIMIT 0,4');
 	
 	while ($rows = db_fetch_object($result)) {
 		$node = node_load($rows->nid);
@@ -266,6 +350,33 @@ function template_preprocess_public_zofront_term(&$variables){
 }
 
 function template_preprocess_zofront_hot_event(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+
+function template_preprocess_slide_show_music(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+function template_preprocess_slide_show_movies(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+
+function template_preprocess_show_trinhchieu(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+
+function template_preprocess_slide_show_kich_noi(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+function template_preprocess_zofront_right_screen(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+function template_preprocess_zofront_right_film(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+function template_preprocess_zofront_right_new_event(&$variables){
+	 $variables['list'] = $variables['list'];
+}
+function template_preprocess_zofront_right_smail_hot_event(&$variables){
 	 $variables['list'] = $variables['list'];
 }
 
@@ -303,7 +414,38 @@ function zofront_theme(){
 	      'arguments' => array('list'=>NULL),
 		  'template' => 'zofront_hot_event',
       ),
-
+      'slide_show_music' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'slide_show_music',
+      ),
+	  'slide_show_movies' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'slide_show_movies',
+      ),
+      'slide_show_kich_noi' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'slide_show_kich_noi',
+      ),
+      'show_trinhchieu' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'show_trinhchieu',
+      ),
+      'zofront_right_screen' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_right_screen',
+      ),
+      'zofront_right_film' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_right_film',
+      ),
+      'zofront_right_new_event' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_right_new_event',
+      ),
+      'zofront_right_smail_hot_event' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zofront_right_smail_hot_event',
+      ),
 	);
 }
 

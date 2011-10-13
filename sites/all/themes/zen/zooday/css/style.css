@@ -319,8 +319,7 @@ p, span, form, img{
 }
 #featured-film .description {
     background: url('../images/dot-black.png') repeat scroll;
-    bottom: -10px;
-	.bottom:3px;
+    bottom:-31px;
     color: #FFFFFF;
     display: none;
     height: 40px;
@@ -671,17 +670,68 @@ p, span, form, img{
 	margin:0;
 	padding:0;
 }
+
+.back-content-subpage{
+	background:url('../images/back-content-subpage.png') repeat-y scroll;
+	width:960px;
+}
+.back-content-subpage .left{
+	width:654px;
+	float:left;
+}
+.back-content-subpage .navi{
+	background-color:#016992;
+	margin-bottom:20px;
+	height:36px;
+	padding-top:4px;
+	padding-left:4px;
+}
+.back-content-subpage .navi ul{
+	margin:0;
+	padding:0;
+}
+.back-content-subpage .navi ul li{
+	display: inline;
+    float: left;
+    height: 36px;
+    padding: 0 !important;
+    position: relative;
+}
+.back-content-subpage .navi li a:link,.back-content-subpage .navi li a:active,.back-content-subpage .navi li a:visited{
+	background:#3487a8 url('../images/corner.gif') top right no-repeat;
+	padding:10px 10px 0 10px;
+	float:left;
+	margin-right:4px;
+	font-weight:bold;
+	font-size:13px;
+	height:26px;
+	text-transform:uppercase;
+	color:#FFF;
+	position:relative;
+	display:inline-block;
+	line-height:100%;
+}
+.back-content-subpage .navi li a:hover, .back-content-subpage .navi li a.active {
+	background-color: #49bb0e;
+	color: #ffffff;
+}
+.back-content-home .left .back{
+	background: url('../images/line-content-subpage.png') left repeat-y scroll;
+	margin-left: 5px;
+}
+.back-content-home .left .back .white{
+	background: url('../images/line-content-subpage-white.png') left repeat-y scroll;
+}
+
 /*-------------------------------*/
 #featured-new{
 	margin:0 0 10px 30px;
 }
 .item{
-	width:282px;
-	float:left;
-	overflow:hidden;
-	margin-right:20px;
-	margin-bottom:15px;
-	margin-top:15px;
+	float: left;
+    margin: 15px 5px 15px 20px;
+    overflow: hidden;
+    width: 275px;
 }
 .item img{
 	width:90px;
@@ -976,58 +1026,8 @@ a.range:hover{
 
 
 
-.back-content-subpage{
-	background:url('../images/back-content-subpage.png') repeat-y scroll;
-	width:960px;
-}
-.back-content-subpage .left{
-	width:654px;
-	float:left;
-}
-.back-content-subpage .navi{
-	background-color:#016992;
-	margin-bottom:20px;
-	height:36px;
-	padding-top:4px;
-	padding-left:4px;
-}
-.back-content-subpage .navi ul{
-	margin:0;
-	padding:0;
-}
-.back-content-subpage .navi ul li{
-	display: inline;
-    float: left;
-    height: 36px;
-    padding: 0 !important;
-    position: relative;
-}
-.back-content-subpage .navi li a:link,.back-content-subpage .navi li a:active,.back-content-subpage .navi li a:visited{
-	background:#3487a8 url('../images/corner.gif') top right no-repeat;
-	padding:10px 10px 0 10px;
-	float:left;
-	margin-right:4px;
-	font-weight:bold;
-	font-size:13px;
-	height:26px;
-	text-transform:uppercase;
-	color:#FFF;
-	position:relative;
-	display:inline-block;
-	line-height:100%;
-}
-.back-content-subpage .navi li a:hover, .back-content-subpage .navi li a.active {
-	background-color: #49bb0e;
-	color: #ffffff;
-}
-.back-content-subpage .left .back{
-	background: url('../images/line-content-subpage.png') left repeat-y scroll;
-	margin-left:10px;
-}
-.back-content-subpage .left .back .white{
-	background: url('../images/line-content-subpage-white.png') left repeat-y scroll;
-}
-.
+
+
 /*-------------------------------*/
 
 /* Méo pro */

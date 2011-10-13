@@ -1,8 +1,9 @@
  <div class="bar-title">sự kiện mới</div>
                 <div id="featured-new">               
-                <?php         
+                <?php      
+                $i=1;   
                 foreach ($list as $value) {
-                	
+                
                 	?>
                 	 <div class="item">
                     	<?php echo l(theme_imagecache('90X90', $value->field_hinh_dai_dien[0]['filepath']),'node/'.$value->nid,array('html'=>true));?>
@@ -16,9 +17,12 @@
                         </div>
                     </div>
                 	<?php
-                    	
+                	if($i%2==0){
+                		echo "<div class='clear'></div>";
+                	}    	
+					$i++;
                 }
                 ?>                	
                     <div class="clear"></div>
-                    <?php echo l('Xem tất cả', 'user/', array('attributes' => array('class' => 'more')));?>                
+                    	<?php echo l('xem tất cả','eventnews',array('attributes' => array('class' => 'more')));?>                
                 </div>

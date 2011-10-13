@@ -51,7 +51,7 @@
                 	<ul>
 						<div class="wrapclear">
 							<li>
-								<a href="#">Zooo...day</a>
+								<a href="<?php print $front_page; ?>">Zooo...day</a>
 							</li>
 							<li>
 								<?php echo l('Sự kiện mới','eventnews');?>

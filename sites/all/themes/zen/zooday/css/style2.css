@@ -76,7 +76,9 @@ back-content-subpage .left .back .content-subpage{
 }
 /*-------------------------------*/
 .music{
-	padding:0 0 20px 20px;
+	margin: -5px 0 5px;
+	padding: 0 0 10px 0;
+	float: left;
 }
 .music .banner{
 	width:600px;

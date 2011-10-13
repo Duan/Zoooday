@@ -18,6 +18,6 @@
                       <?php }?>
                     </div>
                     <div class="bottom"><div class="left"><div class="right">
-                    	<a href="#" class="more">xem tất cả</a>
+                    	<?php echo l('xem tất cả','eventnews',array('attributes' => array('class' => 'more')));?>
                     </div></div></div>
                 </div>
