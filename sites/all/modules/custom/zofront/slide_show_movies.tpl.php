@@ -1,26 +1,144 @@
-<div class="back">
-	<div class="bar-title">sự kiện khác</div>
-    <div class="content-subpage">
-    	<?php $i=1 ;foreach ($list as $key=>$value) {?>
-    			<?php  $types = node_get_types();?>
-				<div class="item">
-			    	<?php echo l(theme_imagecache('90X90', $value->field_hinh_dai_dien[0]['filepath']),'node/'.$value->nid,array('html'=>true));?>
-			        <div class="content">
-			        	<p>
-			        		<strong><?php echo l($value->title,'node/'.$value->nid,array('attributes' => array('class' => 'name'), 'html' => 'true'))?></strong>
-			        	</p>
-			            <div class="box">
-			            	<div class="location"><?php  echo $types[$value->type]->name; ?></div>
-			                <div class="time"><?php echo format_date($value->field_ngay_dien[0]['value'],'custom','h:iA, l d/m/Y');?></div>
-			            </div>
-			            <?php  echo $value->field_tom_tat[0]['value']; ?>
-			        </div>
-		    	</div>
-		    	<?php if($i%2==0){?>
-		    			 <div class="clear"></div>
-		    	<?php }?>
-		    	<?php $i++?>
-    	<?php }?>
-        <div class="clear"></div>
+<script type="text/javascript">
+var ex_headline_count_music;
+var ex_current_headline_music=1;
+
+$(document).ready(function() {	
+
+	//Click and Hover events for thumbnail list
+	//$(".slide ul li:first").addClass('active'); 
+	$(".slide ul li:first").find('.mask').hide();
+	$(".slide ul li:first").addClass('hover'); 
+	$(".slide ul li").click(function(){ 
+		var imgAlt = $(this).find('img').attr("alt"); //Get Alt Tag of Image
+		var imgTitle = $(this).find('a').attr("href"); //Get Main Image URL
+		var imgDesc = $(this).find('.block').html(); 	//Get HTML of block
+		var imgSrc = $(this).find('.hide_img').html(); 	//Get HTML of block
+
+		var time =  $(this).find('.hide_time').html();
+		var actor =  $(this).find('.hide_actor').html();
+		var intro =  $(this).find('.hide_intro').html();
+		var location =  $(this).find('.hide_location').html();
+
+		if ($(this).is(".hover")) {  //If it's already active, then...
+			return false; // Don't click through
+		} else {
+			$(".banner .description .name").html(imgAlt);
+			$(".banner .description .intro").html(intro);
+			$(".banner .description .info .duration").html(time);
+			$(".banner .description .info .actor").html(actor);
+			$(".banner .right").html(location);
+			$(".banner .main_content").html(imgSrc);
+		}
+		$(".slide ul li").removeClass('hover'); //Remove class of 'active' on all lists
+		$(".slide ul").find('.mask').show();
+		//$(".slide ul li a").removeClass('active'); //Remove class of 'active' on all lists
+		$(this).find('.mask').hide();
+		$(this).addClass('hover');  //add class of 'active' on this list only
+		return false;
+		
+	});
+
+
+	ex_headline_count_music = $(".slide li").size();
+	ex_current_headline_music = setInterval(ex_headline_rotate_music,5000);	
+	
+});//Close Function
+
+function ex_headline_rotate_music() {
+  ex_old_headline = ex_current_headline_music % ex_headline_count_music;
+  ex_new_headline = ++ex_current_headline_music % ex_headline_count_music;
+  ex_change_image_music(ex_new_headline,ex_old_headline);
+}
+	
+function ex_change_image_music(eq_new,eq_old){
+	thisa = $('.slide li:eq('+eq_new+')');
+	
+	var imgAlt = thisa.find('img').attr("alt"); //Get Alt Tag of Image
+	var imgTitle = thisa.find('a').attr("href"); //Get Main Image URL
+	var imgDesc = thisa.find('.block').html(); 	//Get HTML of block
+	var imgSrc = thisa.find('.hide_img').html(); 	//Get HTML of block
+	var time =  thisa.find('.hide_time').html();
+	var actor =  thisa.find('.hide_actor').html();
+	var intro =  thisa.find('.hide_intro').html();
+	var location =  thisa.find('.hide_location').html();
+	
+	if ($(this).is(".hover")) {  //If it's already active, then...
+		return false; // Don't click through
+	} else {
+			$(".banner .description .name").html(imgAlt);
+			$(".banner .description .intro").html(intro);
+			$(".banner .description .info .duration").html(time);
+			$(".banner .description .info .actor").html(actor);
+			$(".banner .right").html(location);
+			$(".banner .main_content").html(imgSrc);
+	}
+	$(".slide ul li").removeClass('hover'); //Remove class of 'active' on all lists
+	$(".slide ul").find('.mask').show();
+	thisa.find('.mask').hide();
+	thisa.addClass('hover');
+	$('.slide li:eq('+eq_new+') a').addClass('active');
+	
+	return false;
+}
+</script>
+
+<div class="film">
+	<div class="banner">
+		<?php foreach($list as $key=>$row){?>
+				 <?php if($key == 0){?>
+				 		
+				        <span class="main_content"><?php echo l(theme_imagecache('600x286',$row->field_hinh_dai_dien[0]['filepath'],$row->title),'node/'.$row->nid,array('attributes' => array('class' => 'main_img'),'html'=>TRUE))?></span>
+				         <div class="description">
+                        	<p class="name"><strong>How to train a dragon</strong></p>
+                            <p class="info">
+                            	Diễn viên: <span class="actor" style="color:#ea9d31;"><?php echo $row->field_dien_vien[0]['value']?></span><br />
+                            	Thời lượng: <span class="duration" style="color:#ea9d31;"><?php echo format_date($value->field_ngay_dien[0]['value'],'custom','h:iA, l d/m/Y');?></span></p>
+                            <div class="star"></div>
+                            <p class="intro"><?php echo $row->field_tom_tat[0]['value']?></p>
+                            <?php echo l('<div class="play"></div>','node/'.$row->nid,array('html'=>true));?>
+                        </div>	
+				 <?php break;}?>
+		<?php }?>
+    </div>
+    
+    <div class="slide">
+    	<div class="wrapclear">
+    		<ul>
+    			<?php foreach($list as $key=>$row){?>
+    					<li>
+		    				<a href="#">
+				                <div class="thum">
+				                  
+				                   <?php echo theme_imagecache('147x56',$row->field_hinh_dai_dien[0]['filepath'],$row->title)?>
+				                    <div class="hide_img">
+				                    	<?php echo l(theme_imagecache('600x286',$row->field_hinh_dai_dien[0]['filepath'],$row->title),'node/'.$row->nid,array('attributes' => array('class' => 'main_img'),'html'=>TRUE))?>
+				                   	</div>
+				                   	<p class="hide_time">
+				                   		<?php echo format_date($value->field_ngay_dien[0]['value'],'custom','h:iA, l d/m/Y');?>
+				                   	</p>
+				                   	<p class="hide_intro">
+				                   		<?php echo $row->field_tom_tat[0]['value']?>
+				                   	</p>
+				                   	<p class="hide_actor">
+				                   		<?php echo $row->field_dien_vien[0]['value']?>
+				                   	</p>
+				                   	<p class="hide_location"><?php $types = node_get_types(); echo $types[$value->type]->name;?></p>
+				                    <div class="mask">
+				                    	<table width="147" height="56">
+				                        	<tr>
+				                            	<td align="center" valign="middle">
+				                                	<?php echo $row->title?>
+				                                </td>
+				                            </tr>
+				                        </table>
+				                    </div>
+				                </div>
+				            </a>
+		    			</li>	
+    			<?php }?>
+    		</ul>
+        </div>
     </div>
 </div>
+<div class="clear"></div>
+                

@@ -80,4 +80,10 @@ $(function() {
 			}
 		});
 	}
+	
+	$(".film .tab .item-film .thum").hover(function(){
+		$(this).find('.mask').hide()
+	},function(){
+		$(this).find('.mask').show()
+	})
 });

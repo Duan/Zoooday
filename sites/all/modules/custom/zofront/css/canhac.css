@@ -1,0 +1,9 @@
+.item-theater .content .line {
+    background: url("../images/showtime-theater.png") no-repeat scroll center bottom transparent;
+    height: 11px;
+    margin: 5px 0;
+    width: 424px;
+}
+.item-theater .content .showtime {
+    font-size: 15px;
+}

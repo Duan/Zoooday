@@ -1,0 +1,155 @@
+.music .banner .top{
+	background-color:#FFF;
+	padding:10px 20px 10px 20px;
+}
+.boxday{
+	width:50px;
+	height:55px;
+	padding:3px;
+	background-color:#016992;
+	float:left;
+	color:#FFF;
+}
+.boxday .date{
+	text-align:center;
+	font-size:11px;
+	background-color:#3487a8;
+	margin-bottom:3px;
+	height:17px;
+	padding-top:1px;
+	text-transform:uppercase;
+}
+.boxday .num{
+	background-color:#3487a8;
+	font-size:28px;
+	text-align:center;
+	height:25px;
+	padding-top:9px;
+}
+.music .banner .top .info{
+	float:left;
+	padding-left:15px;
+}
+.music .banner .top .info p.name{
+	font-size:18px;
+	color:#ffa12e;
+	margin-bottom:2px;
+	line-height:normal;
+}
+.music .banner .top .info .loca{
+	font-size:18px;
+	color:#016992;	
+}
+.music .banner .top .info a.map:link,.music .banner .top .info a.map:active,.music .banner .top .info a.map:visited{
+	color:#016992;
+	text-decoration:none;
+}
+.music .banner .top .info a.map:hover{
+	color:#016992;
+	text-decoration:underline;
+}
+.post-on{
+	font-size:11px;
+}
+.music .banner .bot{
+	padding:10px 20px 10px 20px;
+	background-color:#ffd289;
+}
+.wrapclear {
+	width: 100%;
+	overflow: hidden;
+}
+.social{
+	padding:10px 4px 0 0;
+}
+.right-social{
+	background:url("../images/right-share.png") no-repeat scroll;
+	width:3px;
+	height:23px;
+	float:right;
+}
+.mid-social{
+	height:19px;
+	border-top:1px solid #016992;
+	border-bottom:1px solid #016992;
+	padding:2px 4px 0 4px;
+	float:right;
+	color:#1a94d3;
+	text-decoration:none;
+}
+.mid-social:hover{
+	text-decoration:underline;
+}
+.left-remind{
+	background:url("../images/left-remind.png") left no-repeat scroll;
+	width:18px;
+	height:23px;
+	float:right;
+	margin-left:10px;
+}
+.left-share {
+    background: url("../images/left-share.png") no-repeat scroll left center transparent;
+    float: right;
+    height: 23px;
+    width: 20px;
+}
+.left-email{
+	background:url("../images/left-email.png") left no-repeat scroll;
+	width:20px;
+	height:23px;
+	float:right;
+	margin-left:10px;
+}
+.other-music{
+	padding:0 35px 0 20px;
+}
+.other-music .left{
+	width:340px;
+	overflow: hidden;
+	float:left;
+	color:#1a94d3;
+	text-decoration:none;
+}
+.other-music .left a{
+ 	color: #1A94D3;
+	text-decoration: none;
+}
+.other-music .left a:hover{
+	text-decoration: underline;
+}
+.other-music a:hover .left {
+	text-decoration:underline;
+}
+.other-music .right{
+	width:180px;
+	float:right;
+	text-align:right;
+	font-size:11px;
+}
+.other-music .dotted {
+    background: url("../images/dotted.gif") repeat-x scroll 0 0 transparent;
+    height: 1px;
+    overflow: hidden;
+    width: 560px;
+	margin:7px 0 7px 0;
+}
+.back-content-home .left .back .content-subpage{
+	padding-left:29px;
+	padding-bottom:10px;
+}
+.music .map{
+	width: 590px;
+	height: 300px;
+}
+.music {
+    margin: 20px 0 0 10px;
+    padding: 0;
+}
+.icon-location {
+    background: url("../images/icon-location.png") no-repeat scroll left top transparent;
+    padding-left: 20px;
+    margin: 10px 0 0;
+}
+.music_detail{
+	margin: 10px 0 0;
+}

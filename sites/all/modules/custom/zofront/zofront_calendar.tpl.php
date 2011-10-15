@@ -1,14 +1,49 @@
 <div class=" calendar">
-	<div class="today">Hôm nay: Thứ hai, 20-7-2011</div>
+	<div class="today">Hôm nay: <?php $today = getdate(); echo $today['weekday'].','.$today['mday'].'-'.$today['mon'].'-'.$today['year']; ?></div>
     <div class="title"><strong>XEM SỰ KIỆN THEO NGÀY</strong></div>
     <div class="content">
-    	<a href="#"><span class="normal-day">fri<br /><strong>15</strong></span></a>
-        <a href="#"><span class="weekend">sat<br /><strong>16</strong></span></a>
-        <a href="#"><span class="weekend">sun<br /><strong>17</strong></span></a>
-        <a href="#"><span class="normal-day">mon<br /><strong>18</strong></span></a>
-        <a href="#"><span class="normal-day">tue<br /><strong>19</strong></span></a>
-        <a href="#"><span class="normal-day">wed<br /><strong>20</strong></span></a>
-        <a href="#"><span class="normal-day">thu<br /><strong>21</strong></span></a>
+                <?php 
+            $datefirt = format_date(strtotime('this week', time())-(3600*24),'custom','d');
+            $mounthfirt = format_date(strtotime('this week', time()-(3600*24)),'custom','m');
+            $yearfirt = format_date(strtotime('this week', time()-(3600*24)),'custom','Y');
+            for($i=1;$i<8;$i++){
+            	$weekdayss [] = date("d",mktime(0,0,0,$mounthfirt,$datefirt,$yearfirt)+$i * (3600*24));
+            	$weekdays [] = date("l",mktime(0,0,0,$mounthfirt,$datefirt,$yearfirt)+$i * (3600*24));
+            }
+
+           foreach ($weekdays as $value) {
+           	if ($value == 'Monday'){
+           		$weekconvertvn[] = 'mon';
+           	}
+            if ($value == 'Tuesday'){
+           		$weekconvertvn[] = 'tue';
+           	}
+            if ($value == 'Wednesday'){
+           		$weekconvertvn[] = 'wed';
+           	}
+            if ($value == 'Thursday'){
+           		$weekconvertvn[] = 'thu';
+           	}
+            if ($value == 'Friday'){
+           		$weekconvertvn[] = 'fri';
+           	}
+            if ($value == 'Saturday'){
+           		$weekconvertvn[] = 'sat';
+           	}
+            if ($value == 'Sunday'){
+           		$weekconvertvn[] = 'sun';
+           	}
+   		
+           }
+ 
+            ?>
+    	<a href="#"><span class="normal-day"><?php echo $weekconvertvn[0]?><br /><strong><?php echo $weekdayss[0]?></strong></span></a>
+        <a href="#"><span class="weekend"><?php echo $weekconvertvn[1]?><br /><strong><?php echo $weekdayss[0]?></strong></span></a>
+	    <a href="#"><span class="normal-day"><?php echo $weekconvertvn[2]?><br /><strong><?php echo $weekdayss[2]?></strong></span></a>
+        <a href="#"><span class="normal-day"><?php echo $weekconvertvn[3]?><br /><strong><?php echo $weekdayss[3]?></strong></span></a>
+        <a href="#"><span class="normal-day"><?php echo $weekconvertvn[4]?><br /><strong><?php echo $weekdayss[4]?></strong></span></a>
+        <a href="#"><span class="normal-day"><?php echo $weekconvertvn[5]?><br /><strong><?php echo $weekdayss[5]?></strong></span></a>
+       	<a href="#"><span class="normal-day"><?php echo $weekconvertvn[6]?><br /><strong><?php echo $weekdayss[6]?></strong></span></a>
         <div class="clear"></div>
         <div class="left" style="width:180px;">
         <a href="#" class="day">Hôm nay</a> <span style="color:#FFF">|</span> <a href="#" class="day">Tuần này</a> <span style="color:#FFF">|</span> <a href="#" class="day">Cuối tuần</a>
@@ -21,12 +56,13 @@
             <div class="line">
                 <input type="text" />
             </div>
-            <a href="#"><img src="images/icon-calendar.gif" width="27" height="23" style="float:left; margin:0 4px 0 4px;"/></a>
+           
+            <div class="but_calen"></div>
             <div class="label">đến</div>
             <div class="line">
                 <input type="text" />
             </div>
-            <a href="#"><img src="images/icon-calendar.gif" width="27" height="23" style="float:left; margin:0 4px 0 4px;"/></a>
+            <div class="but_calen"></div>
             <div class="clear"></div>
         </div>
         <a href="#" class="cancel"><strong>Hủy</strong></a>

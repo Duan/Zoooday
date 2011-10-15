@@ -1,0 +1,262 @@
+.film .tab {
+    margin-top: 20px;
+}
+.film .tab .top {
+    margin-bottom: -1px;
+}
+.film .tab .left {
+    background: url("../images/left-tab-film.gif") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 28px;
+    width: 5px;
+}
+.film .tab .mid {
+    background: url("../images/line-tab-film.gif") repeat-x scroll 0 0 transparent;
+    color: #1A94D3;
+    float: left;
+    height: 21px;
+    padding: 7px 10px 0;
+    text-transform: uppercase;
+}
+.film .tab .right {
+    background: url("../images/right-tab-film.gif") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 28px;
+    width: 5px;
+}
+.film .tab .top-box {
+    background: url("../images/top-box-film.png") no-repeat scroll 0 0 transparent;
+    height: 5px;
+    width: 600px;
+}
+
+.film .tab .mid-box {
+    background: url("../images/line-box-film.png") repeat-y scroll 0 0 transparent;
+    padding: 15px 0 0 15px;
+    width: 585px;
+}
+.film .tab .item-film {
+    float: left;
+    margin: 0 5px 10px;
+    width: 132px;
+}
+.film .tab .item-film a.showtime {
+    color: #1A94D3;
+    font-size: 11px;
+    text-decoration: none;
+}
+.film .tab .item-film .thum {
+    display: block;
+    height: 107px;
+    margin-bottom: 2px;
+    position: relative;
+}
+.film .tab .item-film .thum img {
+    position: absolute;
+}
+.film .tab .item-film .thum .mask {
+    background: url("../images/mask-thum-film.png") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    height: 28px;
+    overflow: hidden;
+    position: absolute;
+    top: 79px;
+    width: 132px;
+}
+.film .tab .item-film a:hover .thum .mask{
+	display:none;
+}
+.film .tab .item-film .thum .mask table{
+	margin: 0;
+}
+.film .tab .item-film .thum .mask table td{
+  	float: left;
+    height: 19px;
+    margin: 2px 0 0;
+    overflow: hidden;;
+}
+.film .tab .item-film .thum .mask table td a{
+	color: #ffffff;
+	text-decoration: none;
+}
+.film .tab .item-film .thum .mask {
+    color: #FFFFFF;
+}
+.film .tab .bot-box {
+    background: url("../images/bot-box-film.png") no-repeat scroll 0 0 transparent;
+    height: 5px;
+    width: 600px;
+}
+.film .banner {
+    width: 600px;
+}
+.film .top1 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: 60px;
+}
+.film .top1 .name-date {
+    float: left;
+    margin: 10px 0 0 20px;
+}
+.film .top1 .name-date .name {
+    color: #FFA12E;
+    font-size: 20px;
+    line-height: normal;
+    text-transform: uppercase;
+}
+.film .top1 .name-date .date {
+    color: #707070;
+    font-size: 11px;
+}
+.film .top1 .play1 {
+    float: right;
+    margin-right: 10px;
+}
+.play1 {
+    float: left;
+    margin-top: 10px;
+}
+.play1_l {
+    background: url("../images/play.png") no-repeat scroll left top transparent;
+    float: left;
+    height: 25px;
+    width: 5px;
+}
+.play1_c a.play1{
+	background: none;
+	padding: 0;
+	margin: 0;
+}
+.play1_c a{
+    background: url("../images/play.png") repeat-x scroll 0 -25px transparent;
+    color: #1A94D3;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 8px;
+    margin: 10px 0 0;
+}
+.play1_r {
+    background: url("../images/play.png") no-repeat scroll 0 -50px transparent;
+    float: left;
+    height: 25px;
+    width: 5px;
+    margin: 10px 0 0;
+}
+
+.kich_detail {
+    margin: 0px 0 0;
+}
+
+.play_r_file{
+	margin: 0;
+}
+
+.film .bot {
+    background: none repeat scroll 0 0 #FFFFFF;
+    padding: 10px 20px;
+    margin: -5px 0 0;
+}
+.other-screenplay-content {
+    margin: 10px 0 0 20px;
+}
+.other-screenplay {
+    background: none repeat scroll 0 0 #FFD289;
+    border-bottom: 1px solid #FFFFFF;
+    float: left;
+    margin-left: 10px;
+    padding: 4px 8px;
+}
+.back_screen_detail{
+	float: left;
+	margin: 15px 0 0;
+	width: 100%;
+}
+.film .top1 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    height: 60px;
+}
+.film .banner .description.v3 {
+    height: 255px;
+    margin-left: 360px;
+    margin-top: -290px;
+    padding-top: 20px;
+    width: 220px;
+}
+.play1 .play1_c {
+    background: url("../images/play.png") repeat-x scroll 0 -25px transparent;
+    color: #1A94D3;
+    float: left;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 8px;
+}
+.film .banner .description {
+    background: url("../images/dot-black.png") repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    height: 205px;
+    line-height: 17px;
+    margin-left: 450px;
+    margin-top: -225px;
+    padding: 10px;
+    position: absolute;
+    width: 130px;
+}
+.film .banner .description.v3 table .color {
+    color: #FFA12E;
+}
+.other-film {
+    padding-left: 10px;
+    padding-right: 30px;
+}
+.other-film .each {
+    border-bottom: 1px solid #E0E0E0;
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+}
+.other-film .each .name {
+    color: #FF7A00;
+    font-size: 18px;
+    line-height: normal;
+}
+.other-film .each .info {
+    background: url("../images/dotted.gif") repeat-x scroll center bottom transparent;
+    padding-bottom: 10px;
+}
+.other-film .each .time {
+    font-size: 12px;
+    margin-top: 6px;
+}
+.time {
+    background: url("../images/icon-time.gif") no-repeat scroll left center transparent;
+    font-size: 11px;
+    padding-left: 15px;
+}
+.showtime3 {
+    margin: 10px 0 0 20px;
+}
+.other-film .each .location, .tel {
+    display: inline;
+    font-size: 12px;
+}
+.other-film .each .tel {
+    background: url("../images/icon-tel.gif") no-repeat scroll left center transparent;
+    margin-left: 10px;
+    padding-left: 15px;
+}
+.other-film .each .location, .tel {
+    display: inline;
+    font-size: 12px;
+}
+.other-film .each .time .type {
+    color: #8DA0C5;
+    display: inline;
+    font-weight: bold;
+    width: 30px;
+}
+.other-film .each .time .detail {
+    color: #E0E0E0;
+    display: inline;
+    font-size: 15px;
+    margin-left: 10px;
+}

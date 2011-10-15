@@ -41,6 +41,8 @@ stylesheets[all][]   = css/fields.css
 stylesheets[all][]   = css/style.css
 stylesheets[all][]   = css/style2.css
 stylesheets[all][]   = css/style3.css
+stylesheets[all][]   = css/music_detail.css
+stylesheets[all][]   = css/film_detail.css
 stylesheets[all][]   = css/mystyle.css
 
 stylesheets[print][] = css/print.css

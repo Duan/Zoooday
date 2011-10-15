@@ -1,4 +1,7 @@
 <?php
+function zofront_perm(){
+	return array('zofront show');
+}
 
 function zofront_menu(){
 	 unset($items['taxonomy/term/%']); 
@@ -6,42 +9,98 @@ function zofront_menu(){
       'title' => t('module'),
       'page callback' => 'zoshowtaxonomyofterm',
       'page arguments' => array(2),
-      'access arguments' => array('access term'),
+      'access arguments' => array('zofront show'),
       'type' => MENU_CALLBACK,
    );
    $items['eventnews'] =array(
       'title' => t('eventnews'),
       'page callback' => 'zoshoweventnews',
-      'access arguments' => array('access term'),
+      'access arguments' => array('zofront show'),
       'type' => MENU_CALLBACK,
    );
    $items['othernews'] =array(
       'title' => t('othernews'),
       'page callback' => 'zoshowothernews',
-      'access arguments' => array('access term'),
+      'access arguments' => array('zofront show'),
       'type' => MENU_CALLBACK,
    );
     $items['music'] =array(
       'title' => t('music'),
       'page callback' => 'zoshowmainmusic',
-      'access arguments' => array('access term'),
+      'access arguments' => array('zofront show'),
       'type' => MENU_CALLBACK,
    );
     $items['movies'] =array(
       'title' => t('movies'),
       'page callback' => 'zoshowmainmovies',
-      'access arguments' => array('access term'),
+      'access arguments' => array('zofront show'),
       'type' => MENU_CALLBACK,
    );
 	$items['story'] =array(
       'title' => t('story'),
       'page callback' => 'zoshowmainstory',
-      'access arguments' => array('access term'),
+      'access arguments' => array('zofront show'),
+      'type' => MENU_CALLBACK,
+   );
+   $items['focus'] =array(
+      'title' => t('focus'),
+      'page callback' => 'zoshowfocus',
+      'access arguments' => array('zofront show'),
+      'type' => MENU_CALLBACK,
+   );
+   $items['cinema'] =array(
+      'title' => t('Phim Rap'),
+      'page callback' => 'cinema',
+      'access arguments' => array('zofront show'),
+      'type' => MENU_CALLBACK,
+   );
+   $items['canhac'] =array(
+      'title' => t('Ca nhac'),
+      'page callback' => 'canhac',
+      'access arguments' => array('zofront show'),
+      'type' => MENU_CALLBACK,
+   );
+   $items['zosearch'] =array(
+      'title' => t('Ca nhac'),
+      'page callback' => 'zosearch',
+      'access arguments' => array('zofront show'),
       'type' => MENU_CALLBACK,
    );
 	return $items;
 }
+function zosearch(){
+	$path  = drupal_get_path('module','zofront');
+	drupal_add_css($path.'/css/zosearch.css');
+	$list = array();
+	$output .= theme('zosearch',$list);
+	return $output;
+}
+function canhac(){
+	$path  = drupal_get_path('module','zofront');
+	drupal_add_css($path.'/css/canhac.css');
+	$list = array();
+	$output .= theme('canhac',$list);
+	return $output;
+}
+function cinema(){
+	$path  = drupal_get_path('module','zofront');
+	drupal_add_css($path.'/css/cinema.css');
+	$list = array();
+	$output .= theme('cinema',$list);
+	return $output;
+}
 
+function zoshowfocus(){
+	$result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE (node.type not in ("main_slide")) AND (node.sticky <> 0) ORDER BY node_created DESC',8,0,NULL);	
+	while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
+	$typetitle = 'SỰ KIỆN NỔI BẬT';
+	$output .= theme('public_zofront_term',$list,$typetitle);
+	return $output;
+	
+}
 
 function zoshowmainmusic(){
 	$path = drupal_get_path('module','zofront');
@@ -57,14 +116,19 @@ function zoshowmainmusic(){
 		$node = node_load($rows->nid);
 		$list[] = $node;
 	}
+	$titlesukienmoi = 'SỰ KIỆN MỚI';
 	$output .= theme('slide_show_music',$list1);
-	$output .= theme('public_zofront_term',$list);
+	$output .= theme('public_zofront_term',$list,$titlesukienmoi);
 	return $output;
 	
 	
 }
 
 function zoshowmainmovies(){
+	
+	$path = drupal_get_path('module','zofront');
+	drupal_add_css($path.'/css/film.css');
+	
 	$result = db_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("movies") ORDER BY node_created DESC LIMIT 0,4');
 	while ($rows = db_fetch_object($result)) {
 		$node = node_load($rows->nid);
@@ -81,18 +145,23 @@ function zoshowmainmovies(){
 		$nodedangchieu = node_load($rowcs->nid);
 		$listdangchieu[] = $nodedangchieu;
 	}
-   	$output .= theme('show_trinhchieu',$listdangchieu);
+	$titledangchieu = 'ĐANG CHIẾU';
+   	$output .= theme('show_trinhchieu',$listdangchieu,$titledangchieu);
    	
    	$resultsapchieu = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node LEFT JOIN content_field_ngay_dien node_data_field_ngay_dien ON node.vid = node_data_field_ngay_dien.vid WHERE (DATE_FORMAT(ADDTIME(FROM_UNIXTIME(node_data_field_ngay_dien.field_ngay_dien_value), SEC_TO_TIME(25200)), "%%Y-%%m-%%d") > "%s") AND (node.type in ("movies")) ORDER BY node_created DESC',$dayset);
     while ($rowss = db_fetch_object($resultsapchieu)) {
 		$nodesapchieu = node_load($rowss->nid);
 		$listsapchieu[] = $nodesapchieu;
 	}
-   	$output .= theme('show_trinhchieu',$listsapchieu);
+	$titlesapchieu = 'SẮP CHIẾU';
+   	$output .= theme('show_trinhchieu',$listsapchieu,$titlesapchieu);
 	return $output;
 }
 
 function zoshowmainstory(){
+	$path = drupal_get_path('module','zofront');
+	drupal_add_css($path.'/css/film.css');
+	
 	$result = db_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("kich_noi") ORDER BY node_created DESC LIMIT 0,4');
 	while ($rows = db_fetch_object($result)) {
 		$node = node_load($rows->nid);
@@ -109,14 +178,16 @@ function zoshowmainstory(){
 		$nodedangchieu = node_load($rowcs->nid);
 		$listdangchieu[] = $nodedangchieu;
 	}
-   	$output .= theme('show_trinhchieu',$listdangchieu);
+	$titledangchieu = 'ĐANG DIỄN';
+   	$output .= theme('show_trinhchieu',$listdangchieu,$titledangchieu);
    	
    	$resultsapchieu = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node LEFT JOIN content_field_ngay_dien node_data_field_ngay_dien ON node.vid = node_data_field_ngay_dien.vid WHERE (DATE_FORMAT(ADDTIME(FROM_UNIXTIME(node_data_field_ngay_dien.field_ngay_dien_value), SEC_TO_TIME(25200)), "%%Y-%%m-%%d") > "%s") AND (node.type in ("kich_noi")) ORDER BY node_created DESC',$dayset);
     while ($rowss = db_fetch_object($resultsapchieu)) {
 		$nodesapchieu = node_load($rowss->nid);
 		$listsapchieu[] = $nodesapchieu;
 	}
-   	$output .= theme('show_trinhchieu',$listsapchieu);
+	$titlesapchieu = 'SẮP DIỄN';
+   	$output .= theme('show_trinhchieu',$listsapchieu,$titlesapchieu);
 	return $output;
 }
 
@@ -126,7 +197,8 @@ function zoshowothernews(){
 		$node = node_load($rows->nid);
 		$list[] = $node;
 	}
-	$output .= theme('public_zofront_term',$list);
+	$typetitle = 'SỰ KIỆN KHÁC';
+	$output .= theme('public_zofront_term',$list,$typetitle);
 	return $output;
 }
 
@@ -138,7 +210,8 @@ $result = pager_query('SELECT node.nid AS nid,node.created AS node_created FROM 
 		$node = node_load($rows->nid);
 		$list[] = $node;
 	}
-	$output .= theme('public_zofront_term',$list);
+	$typetitle = 'SỰ KIỆN MỚI';
+	$output .= theme('public_zofront_term',$list,$typetitle);
 	return $output;
 }
 
@@ -146,7 +219,7 @@ function zoshowtaxonomyofterm($termid){
     $checkpaent = taxonomy_get_children($termid);
     $getlist = array_keys($checkpaent);
     if (!empty($checkpaent)){    	
-    	
+
     	$valuearg1 = $getlist[0];
     	$valuearg2 = $getlist[1];
     $result = pager_query('SELECT node.nid AS nid,
@@ -156,18 +229,47 @@ function zoshowtaxonomyofterm($termid){
  LEFT JOIN term_node term_node ON node.vid = term_node.vid
  LEFT JOIN term_data term_data ON term_node.tid = term_data.tid
  LEFT JOIN term_hierarchy term_hierarchy ON term_data.tid = term_hierarchy.tid
- WHERE term_hierarchy.parent = %d OR term_hierarchy.parent = %d
+ WHERE term_hierarchy.parent = %d OR term_hierarchy.parent = %d GROUP BY node.nid
    ORDER BY node_created DESC',8,0,NULL,$valuearg1,$valuearg2);
-    }else {
- $result = pager_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node INNER JOIN term_node term_node ON node.vid = term_node.vid WHERE term_node.tid = %d ORDER BY node_created DESC',8,0,NULL,$termid);	
-    }
-	while ($rows = db_fetch_object($result)) {
+    	while ($rows = db_fetch_object($result)) {
 		
 	    $node = node_load($rows->nid);
 		$list[] = $node;
 	}
-    $output .= theme('public_zofront_term',$list);
+
+		$path  = drupal_get_path('module','zofront');
+	drupal_add_css($path.'/css/cinema.css');
+	$nametitle = taxonomy_get_term($termid)->name;
+    $output .= theme('cinema',$list,$nametitle);
 	return $output;
+    }else {
+    	$vocabularyname = taxonomy_get_term($termid);
+      if($vocabularyname->vid == 3){
+      	 $result = pager_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node INNER JOIN term_node term_node ON node.vid = term_node.vid WHERE term_node.tid = %d ORDER BY node_created DESC',8,0,NULL,$termid);	
+ 	while ($rows = db_fetch_object($result)) {
+		
+	    $node = node_load($rows->nid);
+		$list[] = $node;
+	}
+		$path  = drupal_get_path('module','zofront');
+	drupal_add_css($path.'/css/canhac.css');
+	$nametitle = taxonomy_get_term($termid)->name;
+    $output .= theme('canhac',$list,$nametitle);
+	return $output;
+      }else {
+      	 $result = pager_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node INNER JOIN term_node term_node ON node.vid = term_node.vid WHERE term_node.tid = %d ORDER BY node_created DESC',8,0,NULL,$termid);	
+ 	while ($rows = db_fetch_object($result)) {
+		
+	    $node = node_load($rows->nid);
+		$list[] = $node;
+	}
+	$nametitle = taxonomy_get_term($termid)->name;
+    $output .= theme('public_zofront_term',$list,$nametitle);
+	return $output;
+      }
+
+    }
+
 }
 
 
@@ -226,32 +328,49 @@ function zofront_block($op = 'list', $delta = 0, $edit = array()) {
 }
 
 function zofront_right_smail_hot_event(){
-	$list = array();
+	$result = db_query('SELECT node.nid AS nid FROM node node WHERE (node.type not in ("main_slide")) AND (node.sticky <> 0)');
+     while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
 	$output .= theme('zofront_right_smail_hot_event',$list);
 	return $output;	
 }
 
 function zofront_right_new_event(){
-	$list = array();
+   $result = db_query('SELECT node.nid AS nid,node.title AS node_title,node.created AS node_created FROM node node WHERE (node.type not in ("main_slide")) ORDER BY node_created DESC LIMIT 0,4');
+	
+	while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
 	$output .= theme('zofront_right_new_event',$list);
 	return $output;	
 }
 
 function zofront_right_film(){
-	$list = array();
+   $result = db_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("movies") ORDER BY node_created DESC LIMIT 0,6');
+     while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
 	$output .= theme('zofront_right_film',$list);
 	return $output;	
 }
 
 function zofront_right_screen(){
-	$list = array();
+   $result = db_query('SELECT node.nid AS nid,node.created AS node_created FROM node node WHERE node.type in ("kich_noi") ORDER BY node_created DESC LIMIT 0,6');
+     while ($rows = db_fetch_object($result)) {
+		$node = node_load($rows->nid);
+		$list[] = $node;
+	}
 	$output .= theme('zofront_right_screen',$list);
 	return $output;	
 }
 
 function zofront_hot_event(){
 	
-	$list ='';	
+
 	$result = db_query('SELECT node.nid AS nid FROM node node WHERE (node.type not in ("main_slide")) AND (node.sticky <> 0)');
      while ($rows = db_fetch_object($result)) {
 		$node = node_load($rows->nid);
@@ -347,6 +466,7 @@ function template_preprocess_zofront_calendar(&$variables){
 
 function template_preprocess_public_zofront_term(&$variables){
 	 $variables['list'] = $variables['list'];
+	 $variables['type'] = $variables['type'];
 }
 
 function template_preprocess_zofront_hot_event(&$variables){
@@ -362,6 +482,7 @@ function template_preprocess_slide_show_movies(&$variables){
 
 function template_preprocess_show_trinhchieu(&$variables){
 	 $variables['list'] = $variables['list'];
+	 $variables['type'] = $variables['type'];
 }
 
 function template_preprocess_slide_show_kich_noi(&$variables){
@@ -379,8 +500,17 @@ function template_preprocess_zofront_right_new_event(&$variables){
 function template_preprocess_zofront_right_smail_hot_event(&$variables){
 	 $variables['list'] = $variables['list'];
 }
-
-
+function template_preprocess_cinema(&$variables){
+	 $variables['list'] = $variables['list'];
+	 $variables['type'] = $variables['type'];
+}
+function template_preprocess_canhac(&$variables){
+	 $variables['list'] = $variables['list'];
+	 $variables['type'] = $variables['type'];
+}
+function template_preprocess_zosearch(&$variables){
+	 $variables['list'] = $variables['list'];
+}
 
 function zofront_theme(){
 	return array(
@@ -406,7 +536,7 @@ function zofront_theme(){
       ),
 
       'public_zofront_term' => array(
-	      'arguments' => array('list'=>NULL),
+	      'arguments' => array('list'=>NULL,'type'=>NULL),
 		  'template' => 'public_zofront_term',
       ),
 
@@ -427,7 +557,7 @@ function zofront_theme(){
 		  'template' => 'slide_show_kich_noi',
       ),
       'show_trinhchieu' => array(
-	      'arguments' => array('list'=>NULL),
+	      'arguments' => array('list'=>NULL,'type'=>NULL),
 		  'template' => 'show_trinhchieu',
       ),
       'zofront_right_screen' => array(
@@ -445,6 +575,18 @@ function zofront_theme(){
       'zofront_right_smail_hot_event' => array(
 	      'arguments' => array('list'=>NULL),
 		  'template' => 'zofront_right_smail_hot_event',
+      ),
+      'cinema' => array(
+	      'arguments' => array('list'=>NULL,'type'=>NULL),
+		  'template' => 'cinema',
+      ),
+      'canhac' => array(
+	      'arguments' => array('list'=>NULL,'type'=>NULL),
+		  'template' => 'canhac',
+      ),
+      'zosearch' => array(
+	      'arguments' => array('list'=>NULL),
+		  'template' => 'zosearch',
       ),
 	);
 }

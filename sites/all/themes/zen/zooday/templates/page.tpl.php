@@ -116,10 +116,15 @@
                         
                         <!-- navi4 -->
 						<div class="each navi4">
-							<a href="#">Mẹ & Bé</a>
+							 <?php 
+					   
+						foreach (taxonomy_get_tree(5) as $value){
+							?>
+							<?php echo l($value->name, 'taxonomy/term/'.$value->tid);?>
 							<span>|</span>
-							<a href="#">Du học</a>
-							<span>|</span>
+							<?php 
+						}
+						?>
 						</div>
 						<!-- navi4 -->
 						
@@ -157,7 +162,13 @@
     </div><!-- /#main, /#main-wrapper -->
 	<div class="clear"></div>
    	<div class="footer">
-       	<a href="#">ZOÔO...ĐÂY</a><span style="color:#96cfec; padding:0 15px 0 15px;">|</span><a href="#">Đăng sự kiện</a><span style="color:#96cfec; padding:0 15px 0 15px;">|</span><a href="#">Đăng quảng cáo</a><span style="color:#96cfec; padding:0 15px 0 15px;">|</span><a href="#">Điều khoản sử dụng</a><span style="color:#96cfec; padding:0 15px 0 15px;">|</span><a href="#">Về chúng tôi</a><span style="color:#96cfec; padding:0 15px 0 15px;">|</span><a href="#">Liên hệ</a>
+       	<a href="#">ZOÔO...ĐÂY</a>
+       	<span style="color:#96cfec; padding:0 15px 0 15px;">|</span>
+       	<a href="#">Đăng sự kiện</a><span style="color:#96cfec; padding:0 15px 0 15px;">|</span>
+       	<a href="#">Đăng quảng cáo</a><span style="color:#96cfec; padding:0 15px 0 15px;">|</span>
+       	<?php echo l('Điều khoản sử dụng','terms')?><span style="color:#96cfec; padding:0 15px 0 15px;">|</span>
+       	<?php echo l('Về chúng tôi','about-us')?><span style="color:#96cfec; padding:0 15px 0 15px;">|</span>
+       	<?php echo l('Liên hệ','contact')?>
     </div>
     <div align="right" style="margin-bottom:30px; color:#c0e2f3; font-size:11px;">© Copyright 2011 by Zoôo...đây. All rights reserved</div>
 

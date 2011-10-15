@@ -1,0 +1,28 @@
+#map{
+	float: left;
+	width: 570px;
+	height:350px;
+	background: #e5e5e5;
+	padding: 5px;
+	border: 1px solid #ffffff;
+}
+#contact-info{
+	float: left;
+	text-align: left;
+	width: 500px;
+	font-size: 1.2em;
+	line-height: 30px;
+	margin: 0 0 20px 0;
+}
+
+.contact-title-form{
+	font-size: 1.8em;
+	color: #9F0132;
+	margin: 20px 0 10px;
+	border-bottom: 2px solid;
+	padding: 0 0 10px 0
+}
+#contactinfo-send-form label{
+	font-size: 1.1em;
+	margin: 0 0 5px 0;	
+}

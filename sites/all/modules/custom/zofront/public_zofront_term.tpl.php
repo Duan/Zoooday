@@ -1,5 +1,5 @@
 <div class="back">
-	<div class="bar-title">sự kiện khác</div>
+	<div class="bar-title"><?php echo $type;?></div>
     <div class="content-subpage">
     	<?php $i=1 ;foreach ($list as $key=>$value) {?>
     			<?php  $types = node_get_types();?>

@@ -1,0 +1,6 @@
+name = Contact
+description = "Contact"
+package = Zooday MODULES
+version = "6.x-1.x"
+core = "6.x"
+project = "zooday"

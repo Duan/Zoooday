@@ -1,0 +1,85 @@
+.back-content-home .left .back .film-theater {
+    padding-left: 10px;
+}
+.film-theater .date {
+    margin-left: 235px;
+    margin-top: -30px;
+    position: absolute;
+}
+.film-theater .datepicker {
+    background-color: #3487A8;
+    border: 2px solid #086D95;
+    color: #FFFFFF;
+    float: right;
+    font-size: 20px;
+    height: 47px;
+    margin-left: 2px;
+    padding-top: 2px;
+    text-align: center;
+    width: 46px;
+}
+.item-theater {
+    padding: 35px 0 10px 20px;
+    width: 600px;
+}
+.back-item-theater {
+    background: url("images/dot-white.png") repeat scroll 0 0 transparent;
+}
+.item-theater .content p.name {
+    font-size: 18px;
+    line-height: normal;
+    margin-bottom: 4px;
+    text-decoration: none;
+}
+.star-big {
+    background: url("../images/star-big.png") no-repeat scroll left top transparent;
+    height: 17px;
+    margin-bottom: 5px;
+    width: 93px;
+}
+.item-theater .content .line2 {
+    background: url("../images/showtime-theater2.png") no-repeat scroll center bottom transparent;
+    height: 11px;
+    margin: 5px 0;
+    width: 424px;
+}
+.item-theater .content .line2 .kind {
+    color: #8DA0C5;
+    line-height: 100%;
+    padding-left: 14px;
+}
+.item-theater .content .line2 .kind {
+    color: #8DA0C5;
+    line-height: 100%;
+}
+.item-theater .content .showtime2 {
+    font-size: 15px;
+    line-height: 140%;
+    padding-left: 30px;
+    width: 390px;
+}
+.item-theater .content .line2 {
+    background: url("../images/showtime-theater2.png") no-repeat scroll center bottom transparent;
+    height: 11px;
+    margin: 5px 0;
+    width: 424px;
+}
+.item-theater .content .showtime2 {
+    font-size: 15px;
+    line-height: 140%;
+    padding-left: 30px;
+    width: 390px;
+}
+.film-theater a.datepicker:hover p, .film-theater a.datepicker.active p {
+    border-bottom: 2px solid #3487A8;
+}
+.film-theater a.datepicker:hover, .film-theater a.datepicker.active {
+    background-color: #086D95;
+    border: 2px solid #3487A8;
+}
+.film-theater a.datepicker p {
+    border-bottom: 2px solid #086D95;
+    font-size: 11px;
+    margin-bottom: 4px;
+    padding-bottom: 2px;
+}

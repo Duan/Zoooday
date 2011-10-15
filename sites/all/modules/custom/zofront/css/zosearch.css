@@ -1,0 +1,102 @@
+.display {
+    padding: 0 35px 3px 0;
+}
+.display .each {
+    float: right;
+    margin-left: 1px;
+}
+.display .left {
+    background: url("../images/left-light-organ.png") no-repeat scroll left top transparent;
+    float: left;
+    height: 32px !important;
+    width: 5px !important;
+}
+.display .left_content {
+    background: none repeat scroll 0 0 #FFC175;
+    color: #000000;
+    float: left;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 8px 0 5px;
+}
+.display .line {
+    background: url("../images/line-organ.gif") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 32px;
+    width: 2px;
+}
+.display .content.active {
+    background: url("../images/arrow-organ.gif") no-repeat scroll center bottom transparent;
+    padding-bottom: 6px;
+}
+.display .content {
+	width: auto !important;
+    float: left !important;
+}
+.display .each {
+    float: right;
+    margin-left: 1px;
+}
+.display .content span {
+    background: none repeat scroll 0 0 #FFA12E;
+    color: #FFFFFF;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 8px;
+}
+.display .content.right {
+    background: url("../images/right-organ.png") no-repeat scroll right center transparent;
+    padding-right: 5px;
+}
+.display .right_active {
+    background: url("../images/right-organ.png") no-repeat scroll right center transparent;
+    float: left;
+    height: 32px;
+    width: 5px;
+}
+.results {
+    padding-left: 10px;
+}
+.item-search {
+    padding: 10px 0 10px 20px;
+}
+.item-search img {
+    border: 5px solid #FFFFFF;
+    float: left;
+    height: 90px;
+    width: 90px;
+}
+.item-search .left {
+    float: left;
+    margin-right: 30px;
+    width: 350px !important;
+}
+.item-search .content {
+    float: left;
+    margin-left: 10px;
+    width: 240px;
+}
+.item-search .content p a.name:link, .item-search .content p a.name:active, .item-search .content p a.name:visited {
+    color: #333333;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.item-search .content p a.name:link, .item-search .content p a.name:active, .item-search .content p a.name:visited {
+    color: #333333;
+    font-weight: bold;
+}
+.item-search .right span {
+    color: #1A94D3;
+}
+.item-search .right {
+    float: left;
+    width: 200px !important;
+}
+.right {
+    float: right;
+}
+.back-item-theater {
+    background: url("../images/dot-white.png") repeat scroll 0 0 transparent;
+}

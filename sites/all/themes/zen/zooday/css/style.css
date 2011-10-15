@@ -255,7 +255,7 @@ p, span, form, img{
 	height: 30px;
 	color: #ffffff;
 	display: none;
-	margin: 35px 14px 0 0;
+	/*margin: 35px 14px 0 0;*/
 	z-index: 20;
 	position: absolute;
 	width: 626px;
@@ -300,6 +300,24 @@ p, span, form, img{
 .footer a:hover{
 	color:#fff;
 	text-decoration:underline;
+}
+
+.but_calen{
+	background: url('../images/icon-calendar.gif') no-repeat;
+	width: 27px;
+	height: 23px;
+	float: left;
+	margin: 0 4px;
+}
+.newsletter .box1 .box2 .content a.send {
+    background: url("../images/but-newsletter.gif") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    float: left;
+    height: 20px;
+    padding-top: 5px;
+    text-align: center;
+    text-decoration: none;
+    width: 35px;
 }
 
 /*-------------------------------*/
@@ -717,7 +735,7 @@ p, span, form, img{
 }
 .back-content-home .left .back{
 	background: url('../images/line-content-subpage.png') left repeat-y scroll;
-	margin-left: 5px;
+	/*margin-left: 5px;*/
 }
 .back-content-home .left .back .white{
 	background: url('../images/line-content-subpage-white.png') left repeat-y scroll;
@@ -729,7 +747,7 @@ p, span, form, img{
 }
 .item{
 	float: left;
-    margin: 15px 5px 15px 20px;
+    margin: 15px 15px 15px 0;
     overflow: hidden;
     width: 275px;
 }

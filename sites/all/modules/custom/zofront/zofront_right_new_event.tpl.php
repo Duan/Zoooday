@@ -1,98 +1,29 @@
   <div class="box-right">
 	<div class="top"><div class="left"><div class="right">
-    	<strong>phim</strong>
+    	<strong>SỰ KIỆN MỚI</strong>
     </div></div></div>
     <div class="content" style="height:200px;">
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
+    <?php 
+    foreach ($list as $value) {
+    	?>
+    	 <div class="item-sma">
+           <p><?php echo l('<strong>'.$value->title.'</strong>','node/'.$value->nid,array('html'=>true,'attributes' => array('class' => 'name'))); ?></p>
             <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
+                <div class="location"><?php $types = node_get_types(); echo $types[$value->type]->name;?></div>
+                <div class="time"><?php echo format_date($value->field_ngay_dien[0]['value'],'custom','h:iA, l d/m/Y');?></div>
             </div>
         </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
-        <div class="item-sma">
-            <p><a href="#" class="name"><strong>Jazz & Wine night</strong></a></p>
-            <div class="info">
-                <div class="location">Restaurant & Lounge</div>
-                <div class="time">8:00pm, chủ nhật 20/03/2011</div>
-            </div>
-        </div>
-        <div class="dotted"></div>
+         <div class="dotted"></div>
+    	<?php 
+
+    }
+    
+    ?>
+       
+       
+      
     </div>
     <div class="bottom"><div class="left"><div class="right">
-    	<a href="#" class="more">xem tất cả</a>
+    	<?php echo l('xem tất cả','eventnews',array('attributes' => array('class' => 'more')));?>
     </div></div></div>
 </div>

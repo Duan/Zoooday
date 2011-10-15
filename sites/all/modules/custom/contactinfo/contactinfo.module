@@ -1,0 +1,158 @@
+<?php 
+function contactinfo_perm(){
+	return array('send contact info','send contact info');
+}
+function contactinfo_menu(){
+	$items = array();
+		$items['admin/emailcontact'] = array(
+	   'title' => 'Email Liên hệ',
+	   'page callback' => 'drupal_get_form',
+       'page arguments' => array('emailcontact_form'),
+   	   'access arguments' => array('send contact info'),
+	);
+	$items['contact'] = array(
+		'title' => t('ask'),
+        'page callback' => 'drupal_get_form',
+		'page arguments' => array('contactinfo_send_form'),
+		'access arguments' => array('send contact info'),
+		'type' => MENU_CALLBACK,	
+	);
+	$items['about-us'] =array(
+      'title' => t('Về chúng tôi'),
+      'page callback' => 'aboutus',
+      'access arguments' => array('send contact info'),
+      'type' => MENU_CALLBACK,
+    );
+	$items['terms'] =array(
+      'title' => t('Điều khoản sử dụng'),
+      'page callback' => 'terms',
+      'access arguments' => array('send contact info'),
+      'type' => MENU_CALLBACK,
+    );
+	return $items;
+}
+
+function terms(){
+	$query .= 'SELECT nid ';
+	$query .= 'FROM {node} n ';
+	$query .= 'WHERE n.type = "term" ';
+	$query .= 'AND n.status = 1 ';
+	$query .= 'ORDER BY n.nid DESC ';
+	$query .= 'LIMIT 0,1 ';
+	$result = db_query($query);
+	while($row= db_fetch_object($result)){
+		$node = node_load($row->nid);
+	}
+	$output = $node->body;
+	return $output;
+}
+
+function aboutus(){
+	$query .= 'SELECT nid ';
+	$query .= 'FROM {node} n ';
+	$query .= 'WHERE n.type = "aboutus" ';
+	$query .= 'AND n.status = 1 ';
+	$query .= 'ORDER BY n.nid DESC ';
+	$query .= 'LIMIT 0,1 ';
+	$result = db_query($query);
+	while($row= db_fetch_object($result)){
+		$node = node_load($row->nid);
+	}
+	$output = $node->body;
+	return $output;
+}
+
+function emailcontact_form(){
+	$form['Email'] = array(
+      '#type' => 'textfield', 
+      '#title' => t('Emai gửi liên hệ'), 
+      '#default_value' => variable_get('EmailContact',null),
+    );
+    $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('submit')
+    );
+    return $form;
+}
+function emailcontact_form_submit($form,&$form_sate){
+	variable_set('EmailContact',  $form_sate['values']['Email']);
+	drupal_set_message('Đã lưu thành công');
+}
+
+function contactinfo_send_form(){
+   drupal_set_title('Gửi liên hệ');
+   
+   $breadcrumb = array();
+   $breadcrumb[] = l('Trang chủ', '<front>');
+   $breadcrumb[] = l(drupal_get_title(),'contact'); // Link to current URL
+	
+	// Set Breadcrumbs
+	drupal_set_breadcrumb($breadcrumb);
+   
+   $path = drupal_get_path('module','contactinfo');
+   drupal_add_js($path.'/js/contact.js');
+	drupal_add_css($path.'/css/contact.css');
+   $form  = array();
+   $form['name'] = array(
+  	  '#type' => 'textfield',
+      '#title' => t('Họ và tên'),
+      '#required' => TRUE,
+   );
+   	$form['email'] = array(
+  	  '#type' => 'textfield',
+      '#title' => t('Email'),
+      '#required' => TRUE,
+   );
+    $form['title'] = array(
+  	  '#type' => 'textfield',
+      '#title' => t('Tiêu đề'),
+      '#required' => TRUE,
+   );
+   $form['body'] = array(
+  	  '#type' => 'textarea',
+  	  '#title' => t('Nội dung'),
+ 	  '#required' => TRUE
+   );
+   $form['submit'] = array(
+      '#type' => 'submit', 
+      '#value' => t('Gửi')
+   );
+   return $form;
+}
+
+function contactinfo_send_form_validate($form,&$form_state){
+	$email = valid_email_address($form_state['values']['email']);
+	if($email == 0){
+		form_set_error('email',t('Thông tin email bạn không chính xác'));	
+	}
+}
+
+function template_preprocess_contactinfo_send_form(&$variables) {
+   $variables['name'] = drupal_render($variables['form']['name']);
+   $variables['email'] = drupal_render($variables['form']['email']);
+   $variables['title'] = drupal_render($variables['form']['title']);
+   $variables['body'] = drupal_render($variables['form']['body']);
+   $variables['submit'] = drupal_render($variables['form']['submit']);
+   $variables['form'] = drupal_render($variables['form']);
+}
+function contactinfo_theme() {
+  $items['contactinfo_send_form'] = array(
+    'template' => 'contactinfo_send_form',
+    'arguments' => array('form' => NULL),
+  );
+  return $items;
+}
+function contactinfo_send_form_submit($form,&$form_state){
+  
+  $params = array(
+    'subject' => $form_state['values']['name'].'-'.$form_state['values']['title'],
+    'body' => $form_state['values']['body'],
+  );
+  if (drupal_mail('htmlmail', 'info', 'phucvuong159@gmail.com', language_default(), $params,'contact@anhcuoiphanthiet.com',TRUE)) {
+  	drupal_set_message('Gửi mail thành công');
+    drupal_goto('node');
+  }
+	
+}
+
+
